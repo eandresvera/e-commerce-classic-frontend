@@ -1,0 +1,166 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+|--------------------------------------------------------------------------
+| Shortcuts
+|--------------------------------------------------------------------------
+*/
+.centrar {
+    @apply container mx-auto;
+}
+
+.vertical-align {
+    @apply flex flex-wrap content-center;
+}
+
+/*
+|--------------------------------------------------------------------------
+| Navbar
+|--------------------------------------------------------------------------
+*/
+.nav-container-black {
+    @apply flex items-center justify-items-center flex-wrap bg-gray-900 px-2 py-4;
+}
+.nav-link{
+    @apply block mt-4 uppercase md:inline-block md:mt-0;
+}
+.nav-link:hover{
+    @apply text-primary-light;
+}
+.nav-r-link {
+    @apply inline-block text-white text-sm px-8;
+}
+
+/*
+|--------------------------------------------------------------------------
+| Search form.
+|--------------------------------------------------------------------------
+|
+| Input & submit button
+|
+| form-focused | input-search | search-input-btn
+| 
+*/
+.form-focused{
+    @apply m-auto rounded-lg rounded-r-xl border-4 border-transparent;
+}
+.form-focused:focus-within{
+    @apply outline-none;
+}
+
+.input-search{
+    @apply rounded-l-md p-2 border-l border-t border-b focus:outline-none focus:border-transparent border-gray-400 px-0 lg:px-12;
+}
+.input-search:focus{
+    @apply outline-none border-transparent;
+}
+
+.search-input-btn{
+    @apply px-4 rounded-r-md bg-primary-golden p-2 uppercase border-t border-b border-r border-primary-golden;
+}
+.search-input-btn:hover{
+    @apply bg-yellow-500 border-yellow-500;
+}
+.search-input-btn:focus{
+    @apply outline-none;
+}
+
+
+
+/*
+|--------------------------------------------------------------------------
+| Carousel CSS
+|--------------------------------------------------------------------------
+|
+| slides | slick-prev | slick-next | slick-track
+|
+*/
+
+.slides .slick-prev,
+.slides .slick-next {
+position: absolute;
+top: 50%;
+z-index: 1;
+}
+
+.slides {
+position: relative;
+}
+
+.slides .slick-prev,
+.slides .slick-next {
+position: absolute;
+top: 50%;
+z-index:1;
+}
+
+.slides .slick-prev {
+left: 5%;
+}
+
+.slides .slick-next {
+right: 5%;
+}
+
+/*
+|--------------------------------------------------------------------------
+| Product Screen
+|--------------------------------------------------------------------------
+*/
+.options-right-card {
+    @apply flex flex-col flex-initial border border-gray-300 rounded-lg py-4 px-6 space-y-8 text-xs md:text-base;
+}
+
+.btn-turquoise {
+    @apply bg-primary-dark text-white w-full px-8 py-3 sm:py-2 focus:outline-none;
+}
+
+.product-details {
+    @apply flex flex-col flex-1 space-y-4 min-h-screen;
+}
+
+.img-size {
+    @apply max-h-550 max-w-550;
+}
+
+/*
+|--------------------------------------------------------------------------
+| Cart Screen
+|--------------------------------------------------------------------------
+*/
+.flex-container {
+    @apply flex pb-5 flex-col-reverse sm:flex-row text-xs sm:text-lg sm:justify-between;
+}
+
+.tittle-2xl {
+    @apply text-sm sm:text-2xl pb-2;
+}
+
+/*
+|--------------------------------------------------------------------------
+| Home Screen
+|--------------------------------------------------------------------------
+*/
+.main-banner-products {
+    @apply grid grid-cols-2 sm:grid-cols-4 mt-5 gap-2 h-full place-items-center;
+}
+
+/*
+|--------------------------------------------------------------------------
+| Simple Form
+|--------------------------------------------------------------------------
+*/
+
+.simple-input-underline {
+    @apply border-b-2 py-2 focus:outline-none;
+}
+
+.tittle-3xl {
+    @apply flex justify-center text-3xl font-semibold mb-2;
+}
+
+.simple-select {
+    @apply bg-gray-100 border border-gray-400 text-sm py-2 px-2 rounded-sm;
+}
