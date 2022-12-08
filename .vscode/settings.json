@@ -3,13 +3,13 @@
         ".vscode": true,
     },
     "files.exclude": {
-        ".vscode": true,
-        "yarn.lock": true,
-        "package.json": true,
-        "package-lock.json": true,
-        ".eslintcache": true,
-        "craco.config.js": true,
-        "node_modules": true,
-        "README.md": true
+        ".vscode": false,
+        "yarn.lock": false,
+        "package.json": false,
+        "package-lock.json": false,
+        ".eslintcache": false,
+        "craco.config.js": false,
+        "node_modules": false,
+        "README.md": false
     }
 }

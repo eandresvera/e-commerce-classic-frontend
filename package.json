@@ -1,6 +1,6 @@
 {
   "name": "e-commerce",
-  "proxy": "http://127.0.0.1:4000",
+  "proxy": "https://e-commerce-classic-backend-q3ia.vercel.app",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

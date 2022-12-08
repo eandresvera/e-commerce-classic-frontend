@@ -1,5 +1,6 @@
 import axios from "axios";
 import { data } from '../../data';
+const serverEndpoint = 'https://e-commerce-classic-backend-q3ia.vercel.app'; 
 
 //Types
 const PRODUCT_LIST_REQUEST = 'PRODUCT_LIST_REQUEST';
@@ -29,10 +30,9 @@ export default function reducer( state = { products: [] }, action ){
 export const productListAction = () => async( dispatch ) => {
 
     dispatch({ type: PRODUCT_LIST_REQUEST });
-
     try {
-        const { data } = await axios.get('/api/products');
-        console.log(data);
+        const { data } = await axios.get(`${serverEndpoint}/api/products`);
+        // console.log(data);
         dispatch({ type: PRODUCT_LIST_SUCCESS, payload: data });
 
     } catch (error) {
