@@ -1,4 +1,5 @@
 import axios from "axios";
+const serverEndpoint = 'https://e-commerce-classic-backend-q3ia.vercel.app';
 
 //Types
 const PRODUCT_DETAILS_REQUEST = 'PRODUCT_DETAILS_REQUEST';
@@ -30,8 +31,7 @@ export const productDetailsAction = ( productId ) => async( dispatch ) => {
     dispatch({ type: PRODUCT_DETAILS_REQUEST });
 
     try {
-        
-        const {data} = await axios.get(`/api/products/${productId}`);
+        const { data } = await axios.get(`${serverEndpoint}/api/products/${productId}`);
         console.log(data);
         dispatch({ type: PRODUCT_DETAILS_SUCCESS, payload: data });
 

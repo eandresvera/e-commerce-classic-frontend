@@ -96,7 +96,7 @@ export const Navbar = (  ) => {
                     <div className="flex content-start">
                         <NavLink 
                             exact
-                            to="/man"
+                            to="/men"
                             activeClassName="text-primary-light"
                             className="hover:text-primary-light"
                         >

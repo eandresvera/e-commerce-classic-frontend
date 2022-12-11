@@ -27,13 +27,17 @@ export default function reducer( state = { products: [] }, action ){
 }
 
 //Actions
-export const productListAction = () => async( dispatch ) => {
+export const productListAction = ( category=false ) => async( dispatch ) => {
 
     dispatch({ type: PRODUCT_LIST_REQUEST });
+    // let filteredByCategory = [];
     try {
         const { data } = await axios.get(`${serverEndpoint}/api/products`);
-        // console.log(data);
-        dispatch({ type: PRODUCT_LIST_SUCCESS, payload: data });
+
+        let filteredByCategory = data.filter(product => product.category.includes(category))
+
+        console.log(filteredByCategory, category);
+        dispatch({ type: PRODUCT_LIST_SUCCESS, payload: category ? filteredByCategory : data });
 
     } catch (error) {
         dispatch({ type: PRODUCT_LIST_FAIL, payload: error.message})

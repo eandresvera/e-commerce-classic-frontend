@@ -25,7 +25,7 @@ import { PointsScreen } from '../components/screens/user-profile/PointsScreen';
 import { WebpayPayment } from '../components/WebpayPayment';
 import { PaymentResponse } from '../components/screens/PaymentResponse';
 import { ProfileRoutes } from './ProfileRoutes';
-import { TestingCode } from '../TestingCode';
+import { CategoryScreen } from '../components/screens/CategoryScreen';
 import { Accesories } from '../components/categories/Accesories';
 import { Woman } from '../components/categories/Woman';
 import { Man } from '../components/categories/Man';
@@ -69,12 +69,13 @@ export const AppRouter = ({location}) => {
                     <Route path="/product/:id" component={ ProductScreen } />
                     <Route path="/checkout" component={ Checkout } />
 
-                    <Route path="/shoes" component={ Shoes } />
+                    <Route path="/:category" component={ CategoryScreen } />
+                    {/* <Route path="/shoes" component={ Shoes } />
                     <Route path="/accesories" component={ Accesories } />
                     <Route path="/woman" component={ Woman } />
                     <Route path="/man" component={ Man } />
                     <Route path="/coats" component={ Coats } />
-                    <Route path="/pants" component={ Pants } />
+                    <Route path="/pants" component={ Pants } /> */}
 
                     <PrivateRoute path="/signin" component={ SigninScreen } />
 
