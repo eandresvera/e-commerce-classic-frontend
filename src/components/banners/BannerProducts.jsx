@@ -15,14 +15,15 @@ export const BannerProducts = ({ id, url, price, name, mobile_url }) => {
     const notify = () => {
         if( !toast.isActive(toastId.current) ) {
             toastId.current = toast.success("Producto agregado al carrito!", { position: toast.POSITION.TOP_CENTER, });
-          }
-      };
+            }
+    };
 
     const addToCartHandler = () => {
         dispatch( addToCart(id, 1) );
         notify();
     }
     
+    // console.log('ID: ', id)
 
     return (
         <div className="flex flex-wrap shadow-md bg-white flex-col items-center">

@@ -32,7 +32,7 @@ export const productDetailsAction = ( productId ) => async( dispatch ) => {
 
     try {
         const { data } = await axios.get(`${serverEndpoint}/api/products/${productId}`);
-        console.log(data);
+
         dispatch({ type: PRODUCT_DETAILS_SUCCESS, payload: data });
 
     } catch (error) {

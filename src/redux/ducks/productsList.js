@@ -36,7 +36,7 @@ export const productListAction = ( category=false ) => async( dispatch ) => {
 
         let filteredByCategory = data.filter(product => product.category.includes(category))
 
-        console.log(filteredByCategory, category);
+        // console.log(filteredByCategory, category);
         dispatch({ type: PRODUCT_LIST_SUCCESS, payload: category ? filteredByCategory : data });
 
     } catch (error) {

@@ -1,6 +1,5 @@
 {
   "hosting": {
-    "site": "e-commerce-demo-4fe4c",
     "public": "build",
     "ignore": [
       "firebase.json",

@@ -1,4 +1,5 @@
 import axios from 'axios';
+const serverEndpoint = 'https://e-commerce-classic-backend-q3ia.vercel.app'; 
 
 //Consts
 //Initial state: empty array if cart is empty, otherwise the localstorage items
@@ -72,7 +73,7 @@ export default function reducer( state = initialState, action ){
 //Actions
 export const addToCart = ( productId, qty ) => async( dispatch, getState ) => {
  
-    const { data } = await axios.get(`/api/products/${productId}`);
+    const { data } = await axios.get(`${serverEndpoint}/api/products/${productId}`);
 
     dispatch({
         type: CART_ADD_ITEM,
