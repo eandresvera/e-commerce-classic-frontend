@@ -69,13 +69,7 @@ export const AppRouter = ({location}) => {
                     <Route path="/product/:id" component={ ProductScreen } />
                     <Route path="/checkout" component={ Checkout } />
 
-                    <Route path="/:category" component={ CategoryScreen } />
-                    {/* <Route path="/shoes" component={ Shoes } />
-                    <Route path="/accesories" component={ Accesories } />
-                    <Route path="/woman" component={ Woman } />
-                    <Route path="/man" component={ Man } />
-                    <Route path="/coats" component={ Coats } />
-                    <Route path="/pants" component={ Pants } /> */}
+                    <Route path="/category/:category" component={ CategoryScreen } />
 
                     <PrivateRoute path="/signin" component={ SigninScreen } />
 
