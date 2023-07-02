@@ -6,7 +6,7 @@ import { productListAction } from '../../redux/ducks/productsList'
 import { ProductCard } from '../cards/ProductCard'
 import { Pagination } from '../Pagination'
 import { FilterProducts } from '../categories/FilterProducts'
-import { useParams } from 'react-router-dom/cjs/react-router-dom'
+import { useParams } from 'react-router-dom'
 
 export const CategoryScreen = () => {
 

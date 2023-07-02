@@ -33,7 +33,6 @@ export const productListAction = ( category=false ) => async( dispatch ) => {
     // let filteredByCategory = [];
     try {
         const { data } = await axios.get(`${serverEndpoint}/api/products`);
-
         let filteredByCategory = data.filter(product => product.category.includes(category))
 
         // console.log(filteredByCategory, category);
