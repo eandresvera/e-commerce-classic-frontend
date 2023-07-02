@@ -1,5 +1,5 @@
 {
-  "name": "ecommerce-frontend-new-react-version",
+  "name": "ecommerce-classic-frontend",
   "version": "0.1.0",
   "proxy": "https://e-commerce-classic-backend-q3ia.vercel.app",
   "private": true,
