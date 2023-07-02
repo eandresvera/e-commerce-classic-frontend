@@ -13,7 +13,7 @@
     "axios": "^0.21.1",
     "firebase": "^8.2.7",
     "firebase-cli": "^1.2.0",
-    "postcss": "^7.0.35",
+    "postcss": "^8.4.24",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-hook-form": "^6.15.1",
@@ -27,7 +27,6 @@
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
     "slick-carousel": "^1.8.1",
-    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.2",
     "transbank-sdk": "^2.1.2",
     "web-vitals": "^0.2.4"
   },
@@ -54,5 +53,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.17"
   }
 }
