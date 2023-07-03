@@ -1,15 +1,12 @@
 import React from 'react';
-
 import { Redirect, Route } from 'react-router-dom';
 import PropTypes from 'prop-types';
-
+import { useSelector } from 'react-redux';
 
 export const ProfileRoutes = ({ component: Component, ...rest }) => {
 
-    // const { user } = useSelector(state => state.userAuth);
-    const isLogged = JSON.parse( localStorage.getItem('logged') ) ;
-
-    // console.log('<PrivateRoute>: ', isLogged);
+    const { user } = useSelector(state => state.userAuth);
+    // console.log('<PrivateRoute>: ', user);
 
     return (
 
@@ -17,7 +14,7 @@ export const ProfileRoutes = ({ component: Component, ...rest }) => {
             {...rest}
             
             component={(props) => (
-                !isLogged
+                !user
                     ? <Redirect  to="/" />
                     : <Component  {...props} />
             )}

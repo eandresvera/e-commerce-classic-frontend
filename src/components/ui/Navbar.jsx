@@ -7,11 +7,11 @@ import { signOut } from '../../helpers/authHelper';
 import { signOutAction } from '../../redux/ducks/userAuth';
 import { SmallLoader } from './SmallLoader';
 
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export const Navbar = (  ) => {
 
-    const history = useHistory();
+    const navigate = useNavigate();
 
     const dispatch = useDispatch();
     const [ menu, setMenu ] = useState(false)
@@ -30,7 +30,7 @@ export const Navbar = (  ) => {
             
             cartItems.length>0 && alert("¡Tu carrito seguira activo!");
 
-            history.push('/');
+            navigate('/');
 
         }
     }

@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 
-import { auth } from '../firebase';
+import { auth, onAuthStateChanged } from '../firebase';
 import { signInAction, signOutAction } from '../redux/ducks/userAuth';
 import { getUserInfo } from '../helpers/dbHelper';
 
@@ -40,14 +40,12 @@ export const AppRouter = ({location}) => {
     // Firebase user data dispatch
     useEffect(() => {
 
-        auth.onAuthStateChanged(async(user) => {
+        onAuthStateChanged( auth, async user => {
 
-            if (user) {;
+            if (user) {
 
                 try {
-
                     const data = await getUserInfo( user.uid, user  );
-                    // console.log('desde router data: ', data);
                     dispatch( signInAction(data) );
                 } catch (error) {
                     console.log(error);
@@ -63,7 +61,7 @@ export const AppRouter = ({location}) => {
             <div>
 
                 <Navbar/>
-                <Switch>
+                <Routes>
                     <Route exact path="/" component={ HomeScreen }/>
                     <Route path="/cart/:id?" component={ CartScreen }/>
                     <Route path="/product/:id" component={ ProductScreen } />
@@ -71,7 +69,7 @@ export const AppRouter = ({location}) => {
 
                     <Route path="/category/:category" component={ CategoryScreen } />
 
-                    <PrivateRoute path="/signin" component={ SigninScreen } />
+                    {/* <PrivateRoute path="/signin" component={ SigninScreen } /> */}
 
                     <ProfileRoutes exact path="/profile" component={ ProfileScreen } />
                     <ProfileRoutes path="/profile/personalinfo" component={ PersonalInfoScreen } />
@@ -82,7 +80,7 @@ export const AppRouter = ({location}) => {
                     <Route path="/placeorder" component={ PlaceOrderScreen } />
                     <Route path="/webpayPayment" component={ WebpayPayment } /> 
                     <Route path="/paymentResponse" component={ PaymentResponse } /> 
-                </Switch>
+                </Routes>
 
                 <Footer/>
 
