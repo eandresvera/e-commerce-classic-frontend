@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-
 import { InputUnderline } from '../ui/form-ui/InputUnderline';
 import { signUp, signIn } from '../../helpers/authHelper';
 import { createUser } from '../../helpers/dbHelper';
@@ -114,11 +113,12 @@ export const SigninScreen = ( props ) => {
                         Crear cuenta
                     </button>
 
-                    <div className="flex justify-center text-indigo-500 text-sm mt-4">
-                        <button onClick={ ()  => {setCreateAccountBtn( false )} }>¿Tienés una cuenta?</button>
-                    </div>
 
                 </form>
+            </div>
+            
+            <div className={`${!createAccountBtn && 'hidden'} flex justify-center text-indigo-500 text-sm mt-4`}>
+                <button onClick={ ()  => {setCreateAccountBtn( false )} }>¿Tienés una cuenta?</button>
             </div>
         </div>
     )
