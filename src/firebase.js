@@ -1,7 +1,7 @@
 import firebase from 'firebase/compat/app';
 import { initializeApp } from 'firebase/app';
-import { getAuth, GoogleAuthProvider } from 'firebase/auth';
-import { getFirestore } from 'firebase/firestore';
+import { getAuth, GoogleAuthProvider, signInWithEmailAndPassword, createUserWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
+import { getFirestore, collection, doc, setDoc, getDoc } from 'firebase/firestore';
 
 const firebaseConfig = {
       apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -12,9 +12,11 @@ const firebaseConfig = {
       appId: process.env.REACT_APP_FIREBASE_APP_ID
     }
 
-    const app  = initializeApp(firebaseConfig);
-    export const auth = getAuth(app);
-    export const db = getFirestore(app);
-    export const googleAuthProvider = new GoogleAuthProvider();
-    export const ToGetCredential = firebase.auth;
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+    const googleAuthProvider = new GoogleAuthProvider();
+    const ToGetCredential = firebase.auth;
+
+    export { ToGetCredential, auth, db, googleAuthProvider, signInWithPopup, signInWithEmailAndPassword, createUserWithEmailAndPassword, collection, doc, setDoc, getDoc };
     export default app;

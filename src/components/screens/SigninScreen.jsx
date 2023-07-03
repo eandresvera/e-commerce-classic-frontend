@@ -66,11 +66,12 @@ export const SigninScreen = ( props ) => {
                     <button className="btn-turquoise" type="submit">Iniciar sesión</button>
                     <GoogleSignInButton props={props}/>
 
-                    <div className="flex justify-center text-indigo-500 text-sm mt-4">
-                        <button onClick={ ()  => {setCreateAccountBtn( true )} }>Crear cuenta</button>
-                    </div>
 
                 </form>
+            </div>
+
+            <div className={`${createAccountBtn && 'hidden'} flex justify-center text-indigo-500 text-sm mt-4`}>
+                <button onClick={ ()  => {setCreateAccountBtn( true )} }>Crear cuenta</button>
             </div>
 
 
