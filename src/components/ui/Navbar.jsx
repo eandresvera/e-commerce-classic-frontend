@@ -124,8 +124,9 @@ export const Navbar = (  ) => {
 
                         {
                             (menu && user) &&
-                                <div className="bg-gray-100 normal-case text-black absolute rounded-sm p-4 space-y-3 text-xs w-32">
-                                    <Link to="/profile/personalinfo" className="block hover:text-primary-dark">Mi cuenta</Link>
+                                <div className="bg-gray-100 normal-case text-black absolute rounded-sm p-4 space-y-3 text-xs w-32 z-50">
+                                    <Link to="/profile" className="block hover:text-primary-dark">Mi cuenta</Link>
+                                    <Link to="/profile/personalinfo" className="block hover:text-primary-dark">Datos personales</Link>
                                     <Link to="/profile/orders" className="block hover:text-primary-dark">Ordenes</Link>
                                     <Link to="/profile/points" className="block hover:text-primary-dark">Puntos</Link>
                                     <button className="block hover:text-primary-dark focus:outline-none" onClick={ signOutHandler }>

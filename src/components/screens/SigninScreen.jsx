@@ -4,6 +4,9 @@ import { InputUnderline } from '../ui/form-ui/InputUnderline';
 import { signUp, signIn } from '../../helpers/authHelper';
 import { createUser } from '../../helpers/dbHelper';
 import { GoogleSignInButton } from '../ui/buttons/GoogleSignInButton';
+import { Navigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { BigSpinner } from '../ui/BigSpinner';
 
 export const SigninScreen = ( props ) => {
 
@@ -13,10 +16,12 @@ export const SigninScreen = ( props ) => {
     const { register, errors, handleSubmit } = useForm();
     const { register: register2, errors: errors2, handleSubmit: handleSubmit2 } = useForm();
 
+    const { user, loading } = useSelector(state => state.userAuth)
+
     const signInHandler = (data) => {
 
         signIn( data.email, data.pass )
-            .then( () => props.history.push('/') )
+            .then( () => <Navigate to="/" /> )
             .catch( (error) => {
                 setError( error.message );
                 console.log(error);
@@ -30,11 +35,18 @@ export const SigninScreen = ( props ) => {
             const { pass, ...dataWithoutPass } = data;
 
             createUser( dataWithoutPass );
-            props.history.push('/'); 
+            <Navigate to="/"/>
 
         } catch (error) {
             setError( error.message )
         }
+    }
+// console.log(loading)
+    if (loading) {
+        return <BigSpinner />
+    }
+    if (user) {
+        return <Navigate to="/" />
     }
 
     return (
@@ -72,7 +84,6 @@ export const SigninScreen = ( props ) => {
             <div className={`${createAccountBtn && 'hidden'} flex justify-center text-indigo-500 text-sm mt-4`}>
                 <button onClick={ ()  => {setCreateAccountBtn( true )} }>Crear cuenta</button>
             </div>
-
 
             <div className={`centrar flex justify-center mt-20 ${!createAccountBtn && 'hidden'}`}>
                 <form className="w-3/12" onSubmit={ handleSubmit2( signUpHandler ) } >

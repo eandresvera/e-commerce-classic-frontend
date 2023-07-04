@@ -15,6 +15,7 @@ import { GoogleSignInButton } from '../ui/buttons/GoogleSignInButton';
 
 import { getCurrentUSerId } from '../../helpers/authHelper';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 export const Checkout = ( props ) => {
 
@@ -26,10 +27,11 @@ export const Checkout = ( props ) => {
     const { cartItems } = useSelector(state => state.cart);
     const {register, errors, handleSubmit} = useForm();
     const {register: signinRegister, errors: signinErrors, handleSubmit: signinSubmit} = useForm();
-    
+    const navigate = useNavigate();
+
     const onSubmit = (data) => {
         dispatch( saveShippingInfoAction(data) );
-        props.history.push('/placeorder');
+        navigate('/placeorder')
     }
     
     // console.log('Componente Checkout Renderizado');
@@ -48,7 +50,7 @@ export const Checkout = ( props ) => {
     // If there is cart items, render... 
     if (cartItems.length === 0) {
         
-        props.history.goBack();
+        navigate(-1);
         return <div className="min-h-screen"></div>;
     }else{
 

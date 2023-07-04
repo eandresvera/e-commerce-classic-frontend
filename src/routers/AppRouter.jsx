@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Outlet } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 
 import { auth, onAuthStateChanged } from '../firebase';
@@ -54,15 +54,18 @@ export const AppRouter = ({location}) => {
                 <Navbar/>
                 <Routes>
                     <Route path="/" element={ <HomeScreen /> }/>
-                    <Route path="/cart/:id?" element={ <CartScreen /> }/>
-                    <Route path="/product/:id" element={ <ProductScreen /> } />
+
+                    <Route path="cart/:id?" element={ <CartScreen /> }/>
+
+                    <Route path="/product/:productId" element={ <ProductScreen /> } />
                     <Route path="/checkout" element={ <Checkout /> } />
 
                     <Route path="/category/:category" element={ <CategoryScreen /> } />
 
                     <Route path="/signin" element={ <SigninScreen /> } />
 
-                    <Route path="/profile" element={ <ProtectedRoute> { <ProfileScreen /> } </ProtectedRoute> }>
+                    <Route path="profile" element={   <ProtectedRoute> <Outlet /> </ProtectedRoute>   }>
+                        <Route index element={ <ProfileScreen /> } />
                         <Route path="personalinfo" element={ <PersonalInfoScreen /> }/>
                         <Route path="orders" element={ <OrdersScreen /> }/>
                         <Route path="address" element={ <AdressScreen /> }/>

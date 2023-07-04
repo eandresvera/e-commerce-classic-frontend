@@ -12,22 +12,12 @@ export const getUserInfo = async() => {
     const userRef = doc(db, "users", uid) 
     const userSnap = await getDoc(userRef);
     
-    console.log('desde el helper: ', userSnap.exists());
     if (userSnap.exists()) {
         return userSnap.data();
       } else {
         // userSnap.data() will be undefined in this case
         return false;
       }
-
-    // try {
-    //     const userRef = await db.collection('users').doc(uid).get();
-
-    //     return  userRef.data() && userRef.data();
-
-    // } catch (error) {
-    //     return error;
-    // } 
 }
 
 export const updatePassword = ( currentPassword, newPassword ) => {

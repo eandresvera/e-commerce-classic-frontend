@@ -1,12 +1,14 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { Navigate } from 'react-router-dom';
+import { BigSpinner } from '../components/ui/BigSpinner';
 
 export const ProtectedRoute = ({ children }) => {
 
-    const {user} = useSelector(state => state.userAuth);
+    const {user, loading} = useSelector(state => state.userAuth);
+    console.log(`ProtectedRoute: ${loading}`)
 
-    if (!user) {
+    if (user === undefined) {
         return <Navigate to="/signin"/>
     }
 

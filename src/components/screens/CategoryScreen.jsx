@@ -7,6 +7,7 @@ import { ProductCard } from '../cards/ProductCard'
 import { Pagination } from '../Pagination'
 import { FilterProducts } from '../categories/FilterProducts'
 import { useParams } from 'react-router-dom'
+import { BigSpinner } from '../ui/BigSpinner'
 
 export const CategoryScreen = () => {
 
@@ -20,7 +21,7 @@ export const CategoryScreen = () => {
     }, [dispatch, category]) 
 
     if (products === undefined) {
-        return <p>Cargando...</p>
+        return <BigSpinner />
     }
 
     // console.log('<CategoryScreen>: ', category);
@@ -31,7 +32,7 @@ export const CategoryScreen = () => {
 
     return (
         <div>
-            <div className="h-10 p-2 shadow-md pl-4 mb-4">{products && products.length} resultados</div>
+            <div className="h-10 p-2 shadow-md pl-4 mb-4">{products && products.length} resultado/s</div>
             <div className="md:mx-8">
 
                 <div className="flex justify-between flex-col md:flex-row space-y-4 md:space-y-0">

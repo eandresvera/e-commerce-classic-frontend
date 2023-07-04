@@ -4,10 +4,12 @@ import { getUserInfo } from '../../../helpers/dbHelper';
 import { googleSignIn } from '../../../helpers/authHelper';
 import { createUser } from '../../../helpers/dbHelper';
 import { useDispatch } from 'react-redux';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 export const GoogleSignInButton = ({props}) => {
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const handleGoogleSignIn = async() => {
 
@@ -29,8 +31,7 @@ export const GoogleSignInButton = ({props}) => {
                     createUser( userInfo );
                     dispatch( signInAction(userInfo) );
                 }
-
-                props.history.push('/');
+                navigate('/');
             }
 
         } catch (e) {

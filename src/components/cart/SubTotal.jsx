@@ -1,11 +1,13 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export const SubTotal = ({ cartItems, history }) => {
 
     // console.log('<SubTotal> Renderizado');
 
+    const navigate = useNavigate();
     const checkoutHandler = () => {
-        history.push('/checkout');
+        navigate('/checkout');
     }
     
 

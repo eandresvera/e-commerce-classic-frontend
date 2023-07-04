@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCurrentUSerId } from '../../helpers/authHelper';
 import { BigSpinner } from '../ui/BigSpinner';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 
 export const PlaceOrderScreen = (props) => {
@@ -12,7 +13,7 @@ export const PlaceOrderScreen = (props) => {
     const cart = useSelector(state => state.cart); 
     const { shippingInfo, cartItems } = cart;
     let sanitizedAmount = 0; 
-    
+    const navigate = useNavigate();
     // Sanitized
     // return Qty*Price sanitized
     const getTotal = async( id, qty ) => {
@@ -27,7 +28,7 @@ export const PlaceOrderScreen = (props) => {
     }
     
     const webpayHandler = () => {
-        props.history.push('/webpayPayment')
+        navigate('/webpayPayment')
     }
     
     const transferHandler = async() => {
@@ -36,7 +37,7 @@ export const PlaceOrderScreen = (props) => {
             
             try {
                 const res = await axios.post('/api/payment/transfer', {currentUserId, shippingInfo, sanitizedAmount});
-                props.history.push('/paymentResponse')
+                navigate('/paymentResponse')
             } catch (error) {
                 console.log(error.message);
             }
