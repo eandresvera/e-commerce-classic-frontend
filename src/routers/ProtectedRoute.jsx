@@ -6,9 +6,13 @@ import { BigSpinner } from '../components/ui/BigSpinner';
 export const ProtectedRoute = ({ children }) => {
 
     const {user, loading} = useSelector(state => state.userAuth);
-    console.log(`ProtectedRoute: ${loading}`)
+    // console.log(`ProtectedRoute: ${loading}`)
 
-    if (user === undefined) {
+    if (loading) {
+        <BigSpinner />
+    }
+    
+    if (user === undefined || user === null) {
         return <Navigate to="/signin"/>
     }
 

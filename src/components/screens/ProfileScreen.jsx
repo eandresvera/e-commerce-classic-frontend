@@ -9,7 +9,7 @@ export const ProfileScreen = ( props ) => {
     const dispatch = useDispatch();
     const { user } = useSelector(state => state.userAuth);
     const { cartItems } = useSelector(state => state.cart);
-console.log("ProfileScreen")
+
     if (user === undefined) {
         return <BigSpinner />
     }

@@ -41,10 +41,7 @@ export const SigninScreen = ( props ) => {
             setError( error.message )
         }
     }
-// console.log(loading)
-    if (loading) {
-        return <BigSpinner />
-    }
+
     if (user) {
         return <Navigate to="/" />
     }

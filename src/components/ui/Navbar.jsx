@@ -8,6 +8,9 @@ import { signOutAction } from '../../redux/ducks/userAuth';
 import { SmallLoader } from './SmallLoader';
 
 import { useNavigate } from "react-router-dom";
+import { MobileMenu } from './MobileMenu';
+import { HamburgerButton } from './buttons/HamburgerButton';
+import links from '../../menuData'
 
 export const Navbar = (  ) => {
 
@@ -15,6 +18,7 @@ export const Navbar = (  ) => {
 
     const dispatch = useDispatch();
     const [ menu, setMenu ] = useState(false)
+    const [ mobileMenu, setMobileMenu ] = useState(false);
 
     const userAuth = useSelector(state => state.userAuth);
     const { loading, user } = userAuth;
@@ -28,7 +32,7 @@ export const Navbar = (  ) => {
             signOut()
             dispatch( signOutAction() );
             
-            cartItems.length>0 && alert("¡Tu carrito seguira activo!");
+            // cartItems.length>0 && alert("¡Tu carrito seguira activo!");
 
             navigate('/');
 
@@ -47,68 +51,25 @@ export const Navbar = (  ) => {
 
                 {/* Mobile button */}   
                 <div className="block md:hidden place-self-start">
-                    <button className="flex items-center px-3 py-2 border rounded text-teal-200 border-teal-400 hover:text-white hover:border-white">
-                        <svg className="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
-                    </button>
+                    <HamburgerButton mobileMenu={mobileMenu} setMobileMenu={setMobileMenu}/>
                 </div>
 
-                <div className="hidden uppercase block place-self-start mt-5 md:mt-0 md:flex md:flex-row md:space-y-0 flex-col space-y-6 md:space-x-12">
-                    <div className="flex content-start">
-                        <NavLink 
-                            to="/"
-                            className={({ isActive }) => "hover:text-primary-light" + (isActive ? " text-primary-light" : "")}
-                        >
-                            Inicio
-                        </NavLink>
-                    </div>
-                    <div className="flex content-start">
-                        <NavLink 
-                            to="/category/shoes"
-                            className={({ isActive }) => "hover:text-primary-light" + (isActive ? " text-primary-light" : "")}
-                        >
-                            calzado
-                        </NavLink>
-                    </div>
-                    <div className="flex content-start">
-                        <NavLink 
-                            to="/category/woman"
-                            className={({ isActive }) => "hover:text-primary-light" + (isActive ? " text-primary-light" : "")}
-                        >
-                            mujer
-                        </NavLink>
-                    </div>
-                    <div className="flex content-start">
-                        <NavLink 
-                            to="/category/accesories"
-                            className={({ isActive }) => "hover:text-primary-light" + (isActive ? " text-primary-light" : "")}
-                        >
-                            accesorios
-                        </NavLink>
-                    </div>
-                    <div className="flex content-start">
-                        <NavLink 
-                            to="/category/men"
-                            className={({ isActive }) => "hover:text-primary-light" + (isActive ? " text-primary-light" : "")}
-                        >
-                            hombre
-                        </NavLink>
-                    </div>
-                    <div className="flex content-start">
-                        <NavLink 
-                            to="/category/coats"
-                            className={({ isActive }) => "hover:text-primary-light" + (isActive ? " text-primary-light" : "")}
-                        >
-                            abrigos
-                        </NavLink>
-                    </div>
-                    <div className="flex content-start">
-                        <NavLink 
-                            to="/category/pants"
-                            className={({ isActive }) => "hover:text-primary-light" + (isActive ? " text-primary-light" : "")}
-                        >
-                            pantalones
-                        </NavLink>
-                    </div>
+                <MobileMenu mobileMenu={mobileMenu}/>
+
+                <div className="uppercase hidden place-self-start mt-5 md:mt-0 md:flex md:flex-row md:space-y-0 flex-col space-y-6 md:space-x-12">
+                    {
+                        links.map( link => (
+                            <div className="flex content-start" key={link.name}>
+                                <NavLink 
+                                    to={link.path}
+                                    className={({ isActive }) => "hover:text-primary-light" + (isActive ? " text-primary-light" : "")}
+                                >
+                                {link.name}
+                            </NavLink>
+                            </div>
+                        ))
+                    }
+
 
                     <div className="absolute right-32 pb-4" onMouseEnter={ onMouseHandler } onMouseLeave={ onMouseHandler }>
 
@@ -137,8 +98,6 @@ export const Navbar = (  ) => {
 
                     </div>
                 </div>
-
-
 
                 <div className="flex absolute right-9 space-x-10">
                     <div className="">
