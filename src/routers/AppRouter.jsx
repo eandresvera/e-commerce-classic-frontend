@@ -6,15 +6,12 @@ import { auth, onAuthStateChanged } from '../firebase';
 import { signInAction, signOutAction } from '../redux/ducks/userAuth';
 import { getUserInfo } from '../helpers/dbHelper';
 
-import { PrivateRoute } from './PrivateRoute';
-
 import { HomeScreen } from '../components/screens/HomeScreen';
 import { ProductScreen } from '../components/screens/ProductScreen';
 import { CartScreen } from '../components/screens/CartScreen';
 import { Navbar } from '../components/ui/Navbar';
 import { Footer } from '../components/Footer';
 import { Checkout } from '../components/screens/Checkout';
-import { Shoes } from '../components/categories/Shoes';
 import { SigninScreen } from '../components/screens/SigninScreen';
 import { PlaceOrderScreen } from '../components/screens/PlaceOrderScreen';
 import { ProfileScreen } from '../components/screens/ProfileScreen';
@@ -24,14 +21,8 @@ import { AdressScreen } from '../components/screens/user-profile/AdressScreen';
 import { PointsScreen } from '../components/screens/user-profile/PointsScreen';
 import { WebpayPayment } from '../components/WebpayPayment';
 import { PaymentResponse } from '../components/screens/PaymentResponse';
-import { ProfileRoutes } from './ProfileRoutes';
 import { CategoryScreen } from '../components/screens/CategoryScreen';
-import { Accesories } from '../components/categories/Accesories';
-import { Woman } from '../components/categories/Woman';
-import { Man } from '../components/categories/Man';
-import { Pants } from '../components/categories/Pants';
-import { Coats } from '../components/categories/Coats';
-
+import { ProtectedRoute } from './ProtectedRoute';
 
 export const AppRouter = ({location}) => {
 
@@ -62,24 +53,25 @@ export const AppRouter = ({location}) => {
 
                 <Navbar/>
                 <Routes>
-                    <Route exact path="/" component={ HomeScreen }/>
-                    <Route path="/cart/:id?" component={ CartScreen }/>
-                    <Route path="/product/:id" component={ ProductScreen } />
-                    <Route path="/checkout" component={ Checkout } />
+                    <Route path="/" element={ <HomeScreen /> }/>
+                    <Route path="/cart/:id?" element={ <CartScreen /> }/>
+                    <Route path="/product/:id" element={ <ProductScreen /> } />
+                    <Route path="/checkout" element={ <Checkout /> } />
 
-                    <Route path="/category/:category" component={ CategoryScreen } />
+                    <Route path="/category/:category" element={ <CategoryScreen /> } />
 
-                    {/* <PrivateRoute path="/signin" component={ SigninScreen } /> */}
+                    <Route path="/signin" element={ <SigninScreen /> } />
 
-                    <ProfileRoutes exact path="/profile" component={ ProfileScreen } />
-                    <ProfileRoutes path="/profile/personalinfo" component={ PersonalInfoScreen } />
-                    <ProfileRoutes path="/profile/orders" component={ OrdersScreen } />
-                    <ProfileRoutes path="/profile/address" component={ AdressScreen } />
-                    <ProfileRoutes path="/profile/points" component={ PointsScreen } />
+                    <Route path="/profile" element={ <ProtectedRoute> { <ProfileScreen /> } </ProtectedRoute> }>
+                        <Route path="personalinfo" element={ <PersonalInfoScreen /> }/>
+                        <Route path="orders" element={ <OrdersScreen /> }/>
+                        <Route path="address" element={ <AdressScreen /> }/>
+                        <Route path="points" element={ <PointsScreen /> }/>
+                    </Route>
 
-                    <Route path="/placeorder" component={ PlaceOrderScreen } />
-                    <Route path="/webpayPayment" component={ WebpayPayment } /> 
-                    <Route path="/paymentResponse" component={ PaymentResponse } /> 
+                    <Route path="/placeorder" element={ <PlaceOrderScreen /> } />
+                    <Route path="/webpayPayment" element={ <WebpayPayment /> } /> 
+                    <Route path="/paymentResponse" element={ <PaymentResponse /> } /> 
                 </Routes>
 
                 <Footer/>

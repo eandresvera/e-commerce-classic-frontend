@@ -55,70 +55,56 @@ export const Navbar = (  ) => {
                 <div className="hidden uppercase block place-self-start mt-5 md:mt-0 md:flex md:flex-row md:space-y-0 flex-col space-y-6 md:space-x-12">
                     <div className="flex content-start">
                         <NavLink 
-                            exact
                             to="/"
-                            activeClassName="text-primary-light"
-                            className="hover:text-primary-light"
+                            className={({ isActive }) => "hover:text-primary-light" + (isActive ? " text-primary-light" : "")}
                         >
                             Inicio
                         </NavLink>
                     </div>
                     <div className="flex content-start">
                         <NavLink 
-                            exact
                             to="/category/shoes"
-                            activeClassName="text-primary-light"
-                            className="hover:text-primary-light"
+                            className={({ isActive }) => "hover:text-primary-light" + (isActive ? " text-primary-light" : "")}
                         >
                             calzado
                         </NavLink>
                     </div>
                     <div className="flex content-start">
                         <NavLink 
-                            exact
                             to="/category/woman"
-                            activeClassName="text-primary-light"
-                            className="hover:text-primary-light"
+                            className={({ isActive }) => "hover:text-primary-light" + (isActive ? " text-primary-light" : "")}
                         >
                             mujer
                         </NavLink>
                     </div>
                     <div className="flex content-start">
                         <NavLink 
-                            exact
                             to="/category/accesories"
-                            activeClassName="text-primary-light"
-                            className="hover:text-primary-light"
+                            className={({ isActive }) => "hover:text-primary-light" + (isActive ? " text-primary-light" : "")}
                         >
                             accesorios
                         </NavLink>
                     </div>
                     <div className="flex content-start">
                         <NavLink 
-                            exact
                             to="/category/men"
-                            activeClassName="text-primary-light"
-                            className="hover:text-primary-light"
+                            className={({ isActive }) => "hover:text-primary-light" + (isActive ? " text-primary-light" : "")}
                         >
                             hombre
                         </NavLink>
                     </div>
                     <div className="flex content-start">
                         <NavLink 
-                            exact
                             to="/category/coats"
-                            activeClassName="text-primary-light"
-                            className="hover:text-primary-light"
+                            className={({ isActive }) => "hover:text-primary-light" + (isActive ? " text-primary-light" : "")}
                         >
                             abrigos
                         </NavLink>
                     </div>
                     <div className="flex content-start">
                         <NavLink 
-                            exact
                             to="/category/pants"
-                            activeClassName="text-primary-light"
-                            className="hover:text-primary-light"
+                            className={({ isActive }) => "hover:text-primary-light" + (isActive ? " text-primary-light" : "")}
                         >
                             pantalones
                         </NavLink>
