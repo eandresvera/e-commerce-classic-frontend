@@ -65,7 +65,7 @@ export const Navbar = () => {
                     </Link>
                 </div>
 
-                <MobileMenu mobileMenu={mobileMenu} setMobileMenu={setMobileMenu} user={user} signOutHandler={signOutHandler}/>
+
 
                 <div className="uppercase hidden place-self-start mt-5 md:mt-0 md:flex md:flex-row md:space-y-0 flex-col space-y-6 md:space-x-12">
                     {
@@ -122,8 +122,8 @@ export const Navbar = () => {
                         </span>
                     </Link>
                 </div>
-
             </nav>
+                <MobileMenu mobileMenu={mobileMenu} setMobileMenu={setMobileMenu} user={user} signOutHandler={signOutHandler}/>
         </div>
     )
 }
