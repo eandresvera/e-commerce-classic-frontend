@@ -35,7 +35,15 @@ module.exports = {
         "420px": "420px",
         "460px": "460px",
       },
+      keyframes:{
+        'translate':{
+          '0%, 100%': {transform: 'translateX(100px)'}
+        }
+      },
+      animation: {
+        'mobile-translate': 'mobile-translate 5s ease'
+      }
     },
-},
+  },
   plugins: [],
 }

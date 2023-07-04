@@ -12,7 +12,7 @@ import { MobileMenu } from './MobileMenu';
 import { HamburgerButton } from './buttons/HamburgerButton';
 import links from '../../menuData'
 
-export const Navbar = (  ) => {
+export const Navbar = () => {
 
     const navigate = useNavigate();
 
@@ -50,11 +50,22 @@ export const Navbar = (  ) => {
             <nav className="bg-gray-900 flex flex-col md:flex-row py-5 pl-2 md:pl-12 items-center text-white text-sm">
 
                 {/* Mobile button */}   
-                <div className="block md:hidden place-self-start">
+                <div className=" w-screen flex justify-between md:hidden px-5">
                     <HamburgerButton mobileMenu={mobileMenu} setMobileMenu={setMobileMenu}/>
+
+                    <Link to="/cart" className="flex" aria-label="Carrito">
+                        <RiShoppingCart2Line size="2.6em" className="text-primary-main" aria-hidden="true"/>
+                        <span className="vertical-align text-lg">
+                            {
+                                cartItems.length>0 
+                                    ? cartItems.reduce( ( a, x ) => a+x.qty, 0 )
+                                    : 0
+                            }
+                        </span>
+                    </Link>
                 </div>
 
-                <MobileMenu mobileMenu={mobileMenu}/>
+                <MobileMenu mobileMenu={mobileMenu} setMobileMenu={setMobileMenu} user={user} signOutHandler={signOutHandler}/>
 
                 <div className="uppercase hidden place-self-start mt-5 md:mt-0 md:flex md:flex-row md:space-y-0 flex-col space-y-6 md:space-x-12">
                     {
@@ -99,21 +110,17 @@ export const Navbar = (  ) => {
                     </div>
                 </div>
 
-                <div className="flex absolute right-9 space-x-10">
-                    <div className="">
-
-                        <Link to="/cart" className="flex" aria-label="Carrito">
-                            <RiShoppingCart2Line size="2.6em" className="text-primary-main" aria-hidden="true"/>
-                            <span className="vertical-align text-lg">
-                                {
-                                    cartItems.length>0 
-                                        ? cartItems.reduce( ( a, x ) => a+x.qty, 0 )
-                                        : 0
-                                }
-                            </span>
-                        </Link>
-
-                    </div>
+                <div className="hidden md:flex absolute right-9 space-x-10">
+                    <Link to="/cart" className="flex" aria-label="Carrito">
+                        <RiShoppingCart2Line size="2.6em" className="text-primary-main" aria-hidden="true"/>
+                        <span className="vertical-align text-lg">
+                            {
+                                cartItems.length>0 
+                                    ? cartItems.reduce( ( a, x ) => a+x.qty, 0 )
+                                    : 0
+                            }
+                        </span>
+                    </Link>
                 </div>
 
             </nav>
