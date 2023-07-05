@@ -4,25 +4,36 @@ import { InputUnderline } from '../ui/form-ui/InputUnderline';
 import { signUp, signIn } from '../../helpers/authHelper';
 import { createUser } from '../../helpers/dbHelper';
 import { GoogleSignInButton } from '../ui/buttons/GoogleSignInButton';
-import { Navigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { Navigate, useNavigate } from 'react-router-dom';
 import { BigSpinner } from '../ui/BigSpinner';
+import { useSelector } from 'react-redux';
 
 export const SigninScreen = ( props ) => {
 
     const [ createAccountBtn, setCreateAccountBtn ] = useState( false );
     const [ error, setError ] = useState( null );
+    const [loading, setLoading] = useState(false);
+    const navigate = useNavigate();
+    const {user} = useSelector(state => state.userAuth)
 
     const { register, errors, handleSubmit } = useForm();
     const { register: register2, errors: errors2, handleSubmit: handleSubmit2 } = useForm();
 
-    const { user, loading } = useSelector(state => state.userAuth)
+    if (user) {
+        navigate('/')
+    }
+
+    if (loading || user === undefined) {
+        return <BigSpinner />
+    }
 
     const signInHandler = (data) => {
+        setLoading(true);
 
         signIn( data.email, data.pass )
-            .then( () => <Navigate to="/" /> )
+            .then( () => navigate('/') )
             .catch( (error) => {
+                setLoading(false);
                 setError( error.message );
                 console.log(error);
             });
@@ -40,10 +51,6 @@ export const SigninScreen = ( props ) => {
         } catch (error) {
             setError( error.message )
         }
-    }
-
-    if (user) {
-        return <Navigate to="/" />
     }
 
     return (

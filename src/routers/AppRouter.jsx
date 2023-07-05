@@ -29,6 +29,11 @@ export const AppRouter = ({location}) => {
     const dispatch = useDispatch();
 
     // Firebase user data dispatch
+    // 
+    // User states 
+    // user = null -> No authenticated user
+    // user = undefined -> Awaiting response
+    // user = true -> User authenticated
     useEffect(() => {
 
         onAuthStateChanged( auth, async user => {
@@ -49,37 +54,33 @@ export const AppRouter = ({location}) => {
 
     return (
         <Router>
-            <div>
+            <Navbar/>
+            <Routes>
+                <Route path="/" element={ <HomeScreen /> }/>
 
-                <Navbar/>
-                <Routes>
-                    <Route path="/" element={ <HomeScreen /> }/>
+                <Route path="cart/:id?" element={ <CartScreen /> }/>
 
-                    <Route path="cart/:id?" element={ <CartScreen /> }/>
+                <Route path="/product/:productId" element={ <ProductScreen /> } />
+                <Route path="/checkout" element={ <Checkout /> } />
 
-                    <Route path="/product/:productId" element={ <ProductScreen /> } />
-                    <Route path="/checkout" element={ <Checkout /> } />
+                <Route path="/category/:category" element={ <CategoryScreen /> } />
 
-                    <Route path="/category/:category" element={ <CategoryScreen /> } />
+                <Route path="/signin" element={ <SigninScreen /> } />
 
-                    <Route path="/signin" element={ <SigninScreen /> } />
+                <Route path="profile" element={   <ProtectedRoute> <Outlet /> </ProtectedRoute>   }>
+                    <Route index element={ <ProfileScreen /> } />
+                    <Route path="personalinfo" element={ <PersonalInfoScreen /> }/>
+                    <Route path="orders" element={ <OrdersScreen /> }/>
+                    <Route path="address" element={ <AdressScreen /> }/>
+                    <Route path="points" element={ <PointsScreen /> }/>
+                </Route>
 
-                    <Route path="profile" element={   <ProtectedRoute> <Outlet /> </ProtectedRoute>   }>
-                        <Route index element={ <ProfileScreen /> } />
-                        <Route path="personalinfo" element={ <PersonalInfoScreen /> }/>
-                        <Route path="orders" element={ <OrdersScreen /> }/>
-                        <Route path="address" element={ <AdressScreen /> }/>
-                        <Route path="points" element={ <PointsScreen /> }/>
-                    </Route>
+                <Route path="/placeorder" element={ <PlaceOrderScreen /> } />
+                <Route path="/webpayPayment" element={ <WebpayPayment /> } /> 
+                <Route path="/paymentResponse" element={ <PaymentResponse /> } /> 
+            </Routes>
 
-                    <Route path="/placeorder" element={ <PlaceOrderScreen /> } />
-                    <Route path="/webpayPayment" element={ <WebpayPayment /> } /> 
-                    <Route path="/paymentResponse" element={ <PaymentResponse /> } /> 
-                </Routes>
-
-                <Footer/>
-
-            </div>
+            <Footer/>
         </Router>
     )
 }
