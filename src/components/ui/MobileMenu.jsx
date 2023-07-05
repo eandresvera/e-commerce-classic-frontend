@@ -5,7 +5,7 @@ import { SmallLoader } from './SmallLoader'
 
 export const MobileMenu = ({ mobileMenu, setMobileMenu, user }) => {
   return (
-    <div className={`${mobileMenu ? 'animate-mobile-translate': 'hidden'}  text-white bg-black z-[51] overflow-hidden w-screen h-screen p-10 space-y-10 text-xl uppercase`}>
+    <nav className={`${mobileMenu ? 'animate-mobile-translate': 'hidden'} fixed  text-white bg-black z-[51] overflow-hidden w-screen h-screen p-10 space-y-4 text-xl uppercase`}>
         {
             links.map( link => (
                 <div className="flex content-start" key={link.name}>
@@ -27,6 +27,6 @@ export const MobileMenu = ({ mobileMenu, setMobileMenu, user }) => {
                 ? <NavLink onClick={() => setMobileMenu(false)} to="/profile" className="flex flex-col text-xs normal-case text-primary-main" >{`Hola ${user.name}`}</NavLink>
                 : <NavLink to="/signin" className="flex flex-col text-xs text-primary-main" >Inicia sesión</NavLink>
         }
-    </div>
+    </nav>
   )
 }

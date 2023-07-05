@@ -36,12 +36,18 @@ module.exports = {
         "460px": "460px",
       },
       keyframes:{
-        'translate':{
-          '0%, 100%': {transform: 'translateX(100px)'}
+        'slide-in-l-r':{
+          '0%': {transform: 'translateX(-100%)', opacity:0},
+          '100%': {transform: 'translateX(0)', opacity:1}
+        },
+        'slide-out-l-r': {
+          '0%': { transform: 'translateX(0)', opacity: 1 },
+          '100%': { transform: 'translateX(-100%)', opacity: 0 }
         }
       },
       animation: {
-        'mobile-translate': 'mobile-translate 5s ease'
+        slideInLR: 'slide-in-l-r .5s ease',
+        slideOutLR: 'slide-out-l-r .5s ease forwards'
       }
     },
   },
