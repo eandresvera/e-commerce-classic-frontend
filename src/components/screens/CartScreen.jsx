@@ -5,16 +5,18 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addToCart } from '../../redux/ducks/cart';
 import { ProductCard } from '../cart/ProductCard';
 import { SubTotal } from '../cart/SubTotal';
+import { useLocation, useParams } from 'react-router-dom';
 
 export const CartScreen = ( props ) => {
 
     // console.log('Componente CartScreen Renderizado');
 
     const dispatch = useDispatch();
+    let location = useLocation();
 
-    const productId = props.match.params.id;
-    const qty = props.location.search
-        ? Number( props.location.search.split('=')[1] )
+    let { productId } = useParams();
+    const qty = location.search
+        ? Number( location.search.split('=')[1] )
         : 1;
 
     const cart = useSelector(state => state.cart)

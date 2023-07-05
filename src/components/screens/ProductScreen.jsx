@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
 import { BsFillLockFill } from 'react-icons/bs';
 import { addToCart } from '../../redux/ducks/cart';
 import { productDetailsAction } from '../../redux/ducks/productDetails';
 import { Rating } from '../Rating';
+import { Navigate, useNavigate, useParams } from 'react-router-dom';
 
-export const ProductScreen = ( props ) => {
+export const ProductScreen = () => {
 
     // console.log('<ProductScreen> Renderizado');
 
@@ -19,14 +19,15 @@ export const ProductScreen = ( props ) => {
           }
       };
 
+    const { productId } = useParams();
     const dispatch = useDispatch();
     const [ qty, setQty ] = useState(1);
 
-    const productId = props.match.params.id;
     const productDetails = useSelector( state => state.productDetails );
     const cart = useSelector(state => state.cart);
     const { cartItems } = cart;
     const{ loading, product, error } = productDetails;
+    const navigate = useNavigate();
 
     useEffect(() => {
 
@@ -42,7 +43,8 @@ export const ProductScreen = ( props ) => {
     // console.log('<ProductScreen>: ', qtyAvailable);
 
     const addToCartRedirectHandler = () => {
-        props.history.push(`/cart/${productId}?qty=${qty}`);
+        navigate(`/cart/${productId}?qty=${qty}`)
+
     }
 
 
@@ -112,7 +114,7 @@ export const ProductScreen = ( props ) => {
                                     <div className="flex">
                                         <span className="font-medium">Color:</span> 
                                         {product.colors.map(color => (
-                                            <div className="border border-gray-800 rounded-full h-6 w-6 m-2 cursor-pointer" style={{backgroundColor: color}}></div>
+                                            <div key={color} className="border border-gray-800 rounded-full h-6 w-6 m-2 cursor-pointer" style={{backgroundColor: color}}></div>
                                         ))}
                                     </div>
                             }
@@ -122,7 +124,7 @@ export const ProductScreen = ( props ) => {
                                         <span className="font-medium">Size:</span>
                                         <select name="size">
                                             {product.sizes.map(size => (
-                                                <option value={size}>{size}</option>
+                                                <option key={size} value={size}>{size}</option>
                                             ))}
                                         </select>
                                     </div>

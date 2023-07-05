@@ -7,7 +7,7 @@ import { BannerSN } from '../banners/BannerSN';
 export const Header = () => {
 
     return (
-        <div className="bg-white">
+        <div className="bg-white mt-16">
 
             {/* <Navbar /> */}
 

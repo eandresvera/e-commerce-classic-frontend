@@ -1,11 +1,11 @@
-import { auth, googleAuthProvider } from '../firebase';
+import { auth, googleAuthProvider, signInWithEmailAndPassword, createUserWithEmailAndPassword, signInWithPopup } from '../firebase';
 
 export const signUp = ( email, pass ) => {
-    return auth.createUserWithEmailAndPassword( email, pass );
+    return createUserWithEmailAndPassword( auth, email, pass );
 }
 
 export const signIn = ( email, pass ) => {
-    return auth.signInWithEmailAndPassword( email, pass );
+    return signInWithEmailAndPassword( auth, email, pass );
 }
 
 export const signOut = () => {
@@ -13,7 +13,7 @@ export const signOut = () => {
 }
 
 export const googleSignIn = ( ) => {
-    return auth.signInWithPopup( googleAuthProvider );
+    return signInWithPopup( auth, googleAuthProvider );
 }
 
 export const getCurrentUSerId = () => {

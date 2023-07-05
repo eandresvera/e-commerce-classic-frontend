@@ -1,24 +1,39 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-
 import { InputUnderline } from '../ui/form-ui/InputUnderline';
 import { signUp, signIn } from '../../helpers/authHelper';
 import { createUser } from '../../helpers/dbHelper';
 import { GoogleSignInButton } from '../ui/buttons/GoogleSignInButton';
+import { Navigate, useNavigate } from 'react-router-dom';
+import { BigSpinner } from '../ui/BigSpinner';
+import { useSelector } from 'react-redux';
 
 export const SigninScreen = ( props ) => {
 
     const [ createAccountBtn, setCreateAccountBtn ] = useState( false );
     const [ error, setError ] = useState( null );
+    const [loading, setLoading] = useState(false);
+    const navigate = useNavigate();
+    const {user} = useSelector(state => state.userAuth)
 
     const { register, errors, handleSubmit } = useForm();
     const { register: register2, errors: errors2, handleSubmit: handleSubmit2 } = useForm();
 
+    if (user) {
+        navigate('/')
+    }
+
+    if (loading || user === undefined) {
+        return <BigSpinner />
+    }
+
     const signInHandler = (data) => {
+        setLoading(true);
 
         signIn( data.email, data.pass )
-            .then( () => props.history.push('/') )
+            .then( () => navigate('/') )
             .catch( (error) => {
+                setLoading(false);
                 setError( error.message );
                 console.log(error);
             });
@@ -31,7 +46,7 @@ export const SigninScreen = ( props ) => {
             const { pass, ...dataWithoutPass } = data;
 
             createUser( dataWithoutPass );
-            props.history.push('/'); 
+            <Navigate to="/"/>
 
         } catch (error) {
             setError( error.message )
@@ -66,13 +81,13 @@ export const SigninScreen = ( props ) => {
                     <button className="btn-turquoise" type="submit">Iniciar sesión</button>
                     <GoogleSignInButton props={props}/>
 
-                    <div className="flex justify-center text-indigo-500 text-sm mt-4">
-                        <button onClick={ ()  => {setCreateAccountBtn( true )} }>Crear cuenta</button>
-                    </div>
 
                 </form>
             </div>
 
+            <div className={`${createAccountBtn && 'hidden'} flex justify-center text-indigo-500 text-sm mt-4`}>
+                <button onClick={ ()  => {setCreateAccountBtn( true )} }>Crear cuenta</button>
+            </div>
 
             <div className={`centrar flex justify-center mt-20 ${!createAccountBtn && 'hidden'}`}>
                 <form className="w-3/12" onSubmit={ handleSubmit2( signUpHandler ) } >
@@ -113,11 +128,12 @@ export const SigninScreen = ( props ) => {
                         Crear cuenta
                     </button>
 
-                    <div className="flex justify-center text-indigo-500 text-sm mt-4">
-                        <button onClick={ ()  => {setCreateAccountBtn( false )} }>¿Tienés una cuenta?</button>
-                    </div>
 
                 </form>
+            </div>
+            
+            <div className={`${!createAccountBtn && 'hidden'} flex justify-center text-indigo-500 text-sm mt-4`}>
+                <button onClick={ ()  => {setCreateAccountBtn( false )} }>¿Tienés una cuenta?</button>
             </div>
         </div>
     )

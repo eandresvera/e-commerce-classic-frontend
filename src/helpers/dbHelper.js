@@ -1,23 +1,23 @@
-import { db, auth, ToGetCredential } from '../firebase';
+import { db, auth, ToGetCredential, doc, setDoc, getDoc } from '../firebase';
 import { toast } from 'react-toastify';
 
-export const createUser = ( userInfo ) => {
+export const createUser = async( userInfo ) => {
     const uid = auth.currentUser.uid;
-    // console.log('desde createUser (helper):  ', userInfo);
-    db.collection('users').doc(uid).set( userInfo );
+    await setDoc(doc(db, 'users', uid), userInfo)
 }
 
 export const getUserInfo = async() => {
 
     const uid = auth.currentUser.uid;
-    // console.log('desde el helper;:: ', uid);
-    try {
-        const userRef = await db.collection('users').doc(uid).get();
-        return  userRef.data() && userRef.data();
-
-    } catch (error) {
-        return error;
-    } 
+    const userRef = doc(db, "users", uid) 
+    const userSnap = await getDoc(userRef);
+    
+    if (userSnap.exists()) {
+        return userSnap.data();
+      } else {
+        // userSnap.data() will be undefined in this case
+        return false;
+      }
 }
 
 export const updatePassword = ( currentPassword, newPassword ) => {

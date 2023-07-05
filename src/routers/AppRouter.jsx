@@ -1,12 +1,10 @@
 import React, { useEffect } from 'react'
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Outlet } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 
-import { auth } from '../firebase';
+import { auth, onAuthStateChanged } from '../firebase';
 import { signInAction, signOutAction } from '../redux/ducks/userAuth';
 import { getUserInfo } from '../helpers/dbHelper';
-
-import { PrivateRoute } from './PrivateRoute';
 
 import { HomeScreen } from '../components/screens/HomeScreen';
 import { ProductScreen } from '../components/screens/ProductScreen';
@@ -14,7 +12,6 @@ import { CartScreen } from '../components/screens/CartScreen';
 import { Navbar } from '../components/ui/Navbar';
 import { Footer } from '../components/Footer';
 import { Checkout } from '../components/screens/Checkout';
-import { Shoes } from '../components/categories/Shoes';
 import { SigninScreen } from '../components/screens/SigninScreen';
 import { PlaceOrderScreen } from '../components/screens/PlaceOrderScreen';
 import { ProfileScreen } from '../components/screens/ProfileScreen';
@@ -24,30 +21,27 @@ import { AdressScreen } from '../components/screens/user-profile/AdressScreen';
 import { PointsScreen } from '../components/screens/user-profile/PointsScreen';
 import { WebpayPayment } from '../components/WebpayPayment';
 import { PaymentResponse } from '../components/screens/PaymentResponse';
-import { ProfileRoutes } from './ProfileRoutes';
 import { CategoryScreen } from '../components/screens/CategoryScreen';
-import { Accesories } from '../components/categories/Accesories';
-import { Woman } from '../components/categories/Woman';
-import { Man } from '../components/categories/Man';
-import { Pants } from '../components/categories/Pants';
-import { Coats } from '../components/categories/Coats';
-
+import { ProtectedRoute } from './ProtectedRoute';
 
 export const AppRouter = ({location}) => {
 
     const dispatch = useDispatch();
 
     // Firebase user data dispatch
+    // 
+    // User states 
+    // user = null -> No authenticated user
+    // user = undefined -> Awaiting response
+    // user = true -> User authenticated
     useEffect(() => {
 
-        auth.onAuthStateChanged(async(user) => {
+        onAuthStateChanged( auth, async user => {
 
-            if (user) {;
+            if (user) {
 
                 try {
-
                     const data = await getUserInfo( user.uid, user  );
-                    // console.log('desde router data: ', data);
                     dispatch( signInAction(data) );
                 } catch (error) {
                     console.log(error);
@@ -60,33 +54,33 @@ export const AppRouter = ({location}) => {
 
     return (
         <Router>
-            <div>
+            <Navbar/>
+            <Routes>
+                <Route path="/" element={ <HomeScreen /> }/>
 
-                <Navbar/>
-                <Switch>
-                    <Route exact path="/" component={ HomeScreen }/>
-                    <Route path="/cart/:id?" component={ CartScreen }/>
-                    <Route path="/product/:id" component={ ProductScreen } />
-                    <Route path="/checkout" component={ Checkout } />
+                <Route path="cart/:id?" element={ <CartScreen /> }/>
 
-                    <Route path="/category/:category" component={ CategoryScreen } />
+                <Route path="/product/:productId" element={ <ProductScreen /> } />
+                <Route path="/checkout" element={ <Checkout /> } />
 
-                    <PrivateRoute path="/signin" component={ SigninScreen } />
+                <Route path="/category/:category" element={ <CategoryScreen /> } />
 
-                    <ProfileRoutes exact path="/profile" component={ ProfileScreen } />
-                    <ProfileRoutes path="/profile/personalinfo" component={ PersonalInfoScreen } />
-                    <ProfileRoutes path="/profile/orders" component={ OrdersScreen } />
-                    <ProfileRoutes path="/profile/address" component={ AdressScreen } />
-                    <ProfileRoutes path="/profile/points" component={ PointsScreen } />
+                <Route path="/signin" element={ <SigninScreen /> } />
 
-                    <Route path="/placeorder" component={ PlaceOrderScreen } />
-                    <Route path="/webpayPayment" component={ WebpayPayment } /> 
-                    <Route path="/paymentResponse" component={ PaymentResponse } /> 
-                </Switch>
+                <Route path="profile" element={   <ProtectedRoute> <Outlet /> </ProtectedRoute>   }>
+                    <Route index element={ <ProfileScreen /> } />
+                    <Route path="personalinfo" element={ <PersonalInfoScreen /> }/>
+                    <Route path="orders" element={ <OrdersScreen /> }/>
+                    <Route path="address" element={ <AdressScreen /> }/>
+                    <Route path="points" element={ <PointsScreen /> }/>
+                </Route>
 
-                <Footer/>
+                <Route path="/placeorder" element={ <PlaceOrderScreen /> } />
+                <Route path="/webpayPayment" element={ <WebpayPayment /> } /> 
+                <Route path="/paymentResponse" element={ <PaymentResponse /> } /> 
+            </Routes>
 
-            </div>
+            <Footer/>
         </Router>
     )
 }

@@ -8,7 +8,7 @@ const USER_SIGNIN_FAIL = 'USER_SIGNIN_FAIL';
 const USER_SIGNOUT = 'USER_SIGNOUT';
 
 //Reducer
-export default function reducer( state = {  }, action ) {
+export default function reducer( state = {}, action ) {
 
     switch ( action.type ) {
         
@@ -40,14 +40,11 @@ export const signInAction = ( user ) => ( dispatch ) => {
     user 
         ? dispatch({ type: USER_SIGNIN_SUCCESS, payload: user })
         : dispatch({ type: USER_SIGNIN_FAIL, payload: null })
-
-    localStorage.setItem('logged', true); //Only private route purpose
 }
 
 export const signOutAction = () => (dispatch) => {
 
-    dispatch({ type: USER_SIGNOUT });
-    localStorage.setItem('logged', false); //Only private route purpose
+    dispatch({ type: USER_SIGNOUT })
 }
 
 export const updateUserInfoAction = () => (dispatch) => {
