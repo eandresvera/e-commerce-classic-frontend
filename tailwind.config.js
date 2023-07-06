@@ -34,20 +34,6 @@ module.exports = {
         "100v": "100vh",
         "420px": "420px",
         "460px": "460px",
-      },
-      keyframes:{
-        'slide-in-l-r':{
-          '0%': {transform: 'translateX(-100%)', opacity:0},
-          '100%': {transform: 'translateX(0)', opacity:1}
-        },
-        'slide-out-l-r': {
-          '0%': { transform: 'translateX(0)', opacity: 1 },
-          '100%': { transform: 'translateX(-100%)', opacity: 0 }
-        }
-      },
-      animation: {
-        slideInLR: 'slide-in-l-r .5s ease forwards',
-        slideOutLR: 'slide-out-l-r .5s ease forwards'
       }
     },
   },

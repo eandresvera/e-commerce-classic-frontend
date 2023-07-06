@@ -17,7 +17,7 @@ export const Navbar = () => {
 
     const dispatch = useDispatch();
     const [ menu, setMenu ] = useState(false)
-    const [ mobileMenu, setMobileMenu ] = useState(null);
+    const [ mobileMenu, setMobileMenu ] = useState(false);
 
     const userAuth = useSelector(state => state.userAuth);
     const { user } = userAuth;
@@ -29,7 +29,6 @@ export const Navbar = () => {
         e.type==='mouseenter' && setMenu(true);
         e.type==='mouseleave' && setMenu(false);
     }
-    console.log(mobileMenu)
     
     return (
         <nav className="bg-black fixed inset-x-0 top-0 z-[100] text-white">
@@ -146,7 +145,7 @@ export const Navbar = () => {
             </div>
     
             <div
-                className={`md:hidden opacity-0 absolute overflow-hidden w-screen p-10 h-screen space-y-4 bg-black ${mobileMenu && 'block animate-slideInLR'} ${mobileMenu===false && ' animate-slideOutLR'}`}
+                className={`navbar absolute overflow-hidden w-screen p-10 h-screen space-y-4 bg-black text-2xl ${mobileMenu ? 'fadein' : ' fadeout'}`}
             id="mobile-menu"
             >
                 <div className="px-2 pt-2 pb-3 space-y-4">

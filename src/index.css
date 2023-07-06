@@ -8,6 +8,43 @@
     | MARQUEE TEXT
     |--------------------------------------------------------------------------
     */
+    .navbar{
+        opacity:0;
+        transition: opacity .5s ease;
+    }
+    .fadein{
+        opacity:1;
+        animation: slideinLR .5s ease;
+    }
+    .fadeout{
+        opacity:0;
+        animation: slideoutLR .5s ease;
+    }
+    @keyframes slideinLR{
+        0% {
+          transform: translateX(-100%);
+
+        }
+        100% {
+          transform: translateX(0);
+
+        }
+    }
+    @keyframes slideoutLR{
+        0% {
+            transform: translateX(0);
+            
+        }
+        100% {
+          transform: translateX(-100%);
+
+        }
+    }
+    /*
+    |--------------------------------------------------------------------------
+    | MARQUEE TEXT
+    |--------------------------------------------------------------------------
+    */
     @keyframes marqueeOne {
         0% {
             transform: translate3d(var(--move-initial), 0, 0);
@@ -29,26 +66,26 @@
             position: relative;
             overflow: hidden;
     }
-        .marquee-text {
-            overflow: hidden;
+    .marquee-text {
+        overflow: hidden;
     }
-        .marquee-text-inner {
-            width: fit-content;
-            display: flex;
-            position: relative;
-            white-space: nowrap;
-            animation: scroll 50s linear infinite;
+    .marquee-text-inner {
+        width: fit-content;
+        display: flex;
+        position: relative;
+        white-space: nowrap;
+        animation: scroll 50s linear infinite;
     }
-        .marquee-text-inner span {
-            font-size: 15px;
-            color: white;
-            padding: 1.5rem;
-            text-align:center;
-            color: #fff;
-            letter-spacing: .1rem;
+    .marquee-text-inner span {
+        font-size: 15px;
+        color: white;
+        padding: 1.5rem;
+        text-align:center;
+        color: #fff;
+        letter-spacing: .1rem;
     }
-        .marquee-text-inner .separator {
-            color: #3fe0c7;
+    .marquee-text-inner .separator {
+        color: #3fe0c7;
     }
         @keyframes scroll {
             0% {
