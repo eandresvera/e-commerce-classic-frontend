@@ -46,7 +46,7 @@ module.exports = {
         }
       },
       animation: {
-        slideInLR: 'slide-in-l-r .5s ease',
+        slideInLR: 'slide-in-l-r .5s ease forwards',
         slideOutLR: 'slide-out-l-r .5s ease forwards'
       }
     },

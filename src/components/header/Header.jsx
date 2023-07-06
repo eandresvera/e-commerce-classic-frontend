@@ -1,7 +1,5 @@
 import React from 'react';
-
 import { InputSearch } from '../ui/form-ui/InputSearch';
-import { MiniBanner } from '../banners/MiniBanner';
 import { BannerSN } from '../banners/BannerSN';
 
 export const Header = () => {
@@ -35,8 +33,6 @@ export const Header = () => {
             </div>
 
             {/* Mini Links */}
-
-            <MiniBanner />
 
         </div>
     )

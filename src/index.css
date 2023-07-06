@@ -3,14 +3,62 @@
 @tailwind utilities;
 
 @layer base {
-    .translate-animation {
-
+    /*
+    |--------------------------------------------------------------------------
+    | MARQUEE TEXT
+    |--------------------------------------------------------------------------
+    */
+    @keyframes marqueeOne {
+        0% {
+            transform: translate3d(var(--move-initial), 0, 0);
+        }
+        100% {
+            transform: translate3d(var(--move-final), 0, 0);
+        }
     }
-    h2 {
-      @apply text-xl;
+    @keyframes marqueeTwo {
+        0% {
+            transform: translate3d(var(--move-final), 0, 0);
+        }
+        100% {
+            transform: translate3d(var(--move-initial), 0, 0);
+        }
     }
-    /* ... */
-  }
+    .marquee-text-container{
+            background: #000;
+            position: relative;
+            overflow: hidden;
+    }
+        .marquee-text {
+            overflow: hidden;
+    }
+        .marquee-text-inner {
+            width: fit-content;
+            display: flex;
+            position: relative;
+            white-space: nowrap;
+            animation: scroll 50s linear infinite;
+    }
+        .marquee-text-inner span {
+            font-size: 15px;
+            color: white;
+            padding: 1.5rem;
+            text-align:center;
+            color: #fff;
+            letter-spacing: .1rem;
+    }
+        .marquee-text-inner .separator {
+            color: #3fe0c7;
+    }
+        @keyframes scroll {
+            0% {
+                transform: translateX(0px);
+            }
+            100% {
+                transform: translateX(calc(-150px * 10));
+            }
+        }
+    }
 /*
 |--------------------------------------------------------------------------
 | Shortcuts

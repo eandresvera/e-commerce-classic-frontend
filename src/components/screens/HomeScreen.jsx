@@ -11,6 +11,7 @@ import { productListAction } from '../../redux/ducks/productsList';
 import { addProduct, getProducts } from '../../helpers/dbHelper';
 
 import { ToastContainer } from 'react-toastify';
+import { MarqueeText } from '../carousels/MarqueeText';
 
 
 const mainCarousel = {
@@ -146,7 +147,9 @@ export const HomeScreen = () => {
 
             <Header />
 
+            
             <Carousel settings={ mainCarousel }/>
+            <MarqueeText />
 
             {/* Body */}
             <div className="sm:mx-5">
