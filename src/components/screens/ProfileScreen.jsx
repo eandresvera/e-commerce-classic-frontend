@@ -18,12 +18,12 @@ export const ProfileScreen = ( props ) => {
         <div >
             <div className="min-h-screen centrar">
 
-                <div className="flex text-3xl py-6">
+                <div className="flex text-3xl py-6 justify-center">
                     { user.photoURL && <img className="rounded-full mr-5" src={user.photoURL} alt=""/> }
                     <span>Mi cuenta</span>
                 </div>
 
-                <div className="grid grid-cols-3 gap-6">
+                <div className="grid px-6 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <ProfileCard 
                         icon="user" 
                         tittle="Mis datos" 
