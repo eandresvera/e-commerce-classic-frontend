@@ -16,8 +16,9 @@ import { GoogleSignInButton } from '../ui/buttons/GoogleSignInButton';
 import { getCurrentUSerId } from '../../helpers/authHelper';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { ProductCard } from '../cart/ProductCard';
 
-export const Checkout = ( props ) => {
+export const Checkout = () => {
 
     const dispatch = useDispatch();
 
@@ -25,6 +26,9 @@ export const Checkout = ( props ) => {
 
     const { user } = useSelector(state => state.userAuth);
     const { cartItems } = useSelector(state => state.cart);
+    const [loginPopup, setLoginPopup] = useState(false);
+    const [loading, setLoading] = useState(false);
+
     const {register, errors, handleSubmit} = useForm();
     const {register: signinRegister, errors: signinErrors, handleSubmit: signinSubmit} = useForm();
     const navigate = useNavigate();
@@ -33,39 +37,77 @@ export const Checkout = ( props ) => {
         dispatch( saveShippingInfoAction(data) );
         navigate('/placeorder')
     }
-    
-    // console.log('Componente Checkout Renderizado');
 
     const signInHandler = (data) => {
-
+        setLoading(true);
         signIn( data.signInEmail, data.pass )
-            .catch( (error) => setError( error.message ) );
+            .then( () => setLoading(false))
+            .catch( (error) => {
+                setError( error.message );
+                setLoading(false);
+            });
     }
 
-    
     if (user === undefined) {
         return <BigSpinner />
     }
-
     // If there is cart items, render... 
     if (cartItems.length === 0) {
-        
         navigate(-1);
         return <div className="min-h-screen"></div>;
     }else{
 
         return (
-            <div className="min-h-screen mb-5">
-                <div className="grid grid-cols-2 centrar mt-14 gap-10 font-semibold">
-                    
+            <div className="min-h-screen mt-10 mb-5">
+                <div className="grid px-4 md:grid-cols-2 centrar mt-14 gap-10 font-semibold">
+                    {
+                        loading && 
+                        <BigSpinner />
+                    }
+                    {/* Sign in pop up */}
+                    {
+                        loginPopup && 
+                        <div className={`${loading && 'hidden'} flex flex-col`}>
+                            <div className={ user ? 'hidden' : 'flex' }>
+                                <form className="flex flex-col space-y-5 w-full border border-gray-300 p-8" onSubmit={ signinSubmit(signInHandler) }>
+                                    <span className="flex justify-center text-3xl font-semibold mb-2">¿Tiénes una cuenta?</span>
+                                    
+                                    <InputUnderline 
+                                        register={signinRegister}
+                                        errors={signinErrors}
+                                        inputName='signInEmail' 
+                                        labelName='Rut'
+                                    />
+        
+                                    <InputUnderline 
+                                        register={signinRegister}
+                                        errors={signinErrors}
+                                        inputName='pass' 
+                                        labelName='Contraseña' 
+                                        type='password'
+                                    />
+        
+                                    <button className="btn-turquoise" type="submit" onClick={ signInHandler }>
+                                        Iniciar sesión
+                                    </button>
+                                    
+                                    <GoogleSignInButton />
+        
+                                </form>
+                            </div>
+                        </div>
+                    }
                     {/* Guest form */}
-                    <div className="flex flex-col">
-                        <form className="flex space-y-5 flex-col w-8/12" onSubmit={ handleSubmit( onSubmit ) }>
+                    <div className="flex justify-center">
+                        <form className="flex space-y-5 flex-col w-full" onSubmit={ handleSubmit( onSubmit ) }>
     
                             {
                                 user
                                     ? <span className="tittle-3xl">{`Hola ${user.name}`}</span>
-                                    : <span className="tittle-3xl">{'Compra como invitado'}</span>
+                                    : <div className='flex flex-col items-center'>
+                                        <span className="tittle-3xl">{'Compra como invitado'}</span>
+                                        <button onClick={ () => setLoginPopup(!loginPopup) } className="tittle-xl text-primary-dark">¿Tienes una cuenta?</button>
+                                    </div>
                             }
     
                             {
@@ -141,38 +183,6 @@ export const Checkout = ( props ) => {
                             </div>
                         </form>
                     </div>
-    
-                    {/* Sign in */}
-                    <div className="flex flex-col">
-                        <div className={ user ? 'hidden' : 'flex' }>
-                            <form className="flex flex-col space-y-5 w-8/12 border border-gray-300 p-8" onSubmit={ signinSubmit(signInHandler) }>
-                                <span className="flex justify-center text-3xl font-semibold mb-2">¿Tiénes una cuenta?</span>
-                                
-                                <InputUnderline 
-                                    register={signinRegister}
-                                    errors={signinErrors}
-                                    inputName='signInEmail' 
-                                    labelName='Rut'
-                                />
-    
-                                <InputUnderline 
-                                    register={signinRegister}
-                                    errors={signinErrors}
-                                    inputName='pass' 
-                                    labelName='Contraseña' 
-                                    type='password'
-                                />
-    
-                                <button className="btn-turquoise" type="submit" onClick={ signInHandler }>
-                                    Iniciar sesión
-                                </button>
-                                
-                                <GoogleSignInButton />
-    
-                            </form>
-                        </div>
-                    </div>
-    
                 </div>
             </div>
         )

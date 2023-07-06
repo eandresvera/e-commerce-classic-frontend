@@ -145,7 +145,7 @@ export const PaymentResponse = (props) => {
                                         <span>{paymentMethod.transfer.buyOrder}</span>
                                     </div>
                                     <div className="grid grid-cols-2 space-x-14">
-                                        <span className=" font-semibold">Cuenta banco dde chile</span>
+                                        <span className=" font-semibold">Cuenta Banco de Chile</span>
                                         <span>123123</span>
                                     </div>
                                     <div className="grid grid-cols-2 space-x-14">

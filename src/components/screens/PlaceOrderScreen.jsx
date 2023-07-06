@@ -69,16 +69,62 @@ export const PlaceOrderScreen = (props) => {
 
         return (
             <div className="min-h-screen space-y-8">
-    
+                <div class="overflow-x-auto w-full">
+                    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                            <tr>
+                                <th scope="col" class="px-6 py-3">
+                                    Nombre
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Apellido
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Email
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Teléfono
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Dirección
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Ciudad
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Rut
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    {shippingInfo.name}
+                                </th>
+                                <td class="px-6 py-4">
+                                    {shippingInfo.lastname}
+                                </td>
+                                <td class="px-6 py-4">
+                                    {shippingInfo.email}
+                                </td>
+                                <td class="px-6 py-4">
+                                    {shippingInfo.phone}
+                                </td>
+                                <td class="px-6 py-4">
+                                    {shippingInfo.address}
+                                </td>
+                                <td class="px-6 py-4">
+                                    {shippingInfo.city}
+                                </td>
+                                <td class="px-6 py-4">
+                                    {shippingInfo.rut}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
                 <div className="flex flex-col">
-                    <span>{shippingInfo.name}</span>
-                    <span>{shippingInfo.lastName}</span>
-                    <span>{shippingInfo.email}</span>
-                    <span>{shippingInfo.phone}</span>
-                    <span>{shippingInfo.address}</span>
-                    <span>{shippingInfo.city} - {shippingInfo.region}</span>
-                    <span>{shippingInfo.rut}</span>
-    
                     Tipo de despacho
                     <span>
                         {

@@ -3,12 +3,12 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { BigSpinner } from '../ui/BigSpinner';
 import { ProfileCard } from '../cards/ProfileCard';
+import { SignOutButton } from '../ui/buttons/SignOutButton';
 
 export const ProfileScreen = ( props ) => {
 
     const dispatch = useDispatch();
     const { user } = useSelector(state => state.userAuth);
-    const { cartItems } = useSelector(state => state.cart);
 
     if (user === undefined) {
         return <BigSpinner />
@@ -48,6 +48,7 @@ export const ProfileScreen = ( props ) => {
                         subTittle="Revisa tus puntos y canjéalos" 
                         url="points"
                     />
+                    <SignOutButton user={user}/>
                 </div>
 
             </div>

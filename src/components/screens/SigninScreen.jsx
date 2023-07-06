@@ -60,7 +60,7 @@ export const SigninScreen = ( props ) => {
             </h5>
 
             <div className={`centrar flex justify-center mt-20 ${createAccountBtn && 'hidden'}`}>
-                <form className=" w-3/12" onSubmit={ handleSubmit( signInHandler ) } >
+                <form className=" w-9/12 lg:w-5/12" onSubmit={ handleSubmit( signInHandler ) } >
 
                     { error && <span className='text-red-500 w-3/12'>{error}</span> }
                     

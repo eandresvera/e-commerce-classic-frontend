@@ -46,7 +46,7 @@ export const WebpayPayment = () => {
 
             try {
                 const currentUserId = getCurrentUSerId();
-
+                    
                 const response = await axios.post('/api/payment/webpay', { sanitizedAmount, currentUserId, shippingInfo, arrayIdsQty });
                 const { webpayResponse, buyOrder } = response.data;
                 console.log("Webpaypayment-webpay response", response.data);

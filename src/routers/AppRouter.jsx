@@ -54,7 +54,9 @@ export const AppRouter = ({location}) => {
 
     return (
         <Router>
-            <Navbar/>
+            <div className='mb-16'>
+                <Navbar/>
+            </div>
             <Routes>
                 <Route path="/" element={ <HomeScreen /> }/>
 
