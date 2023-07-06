@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { getCurrentUSerId } from '../helpers/authHelper';
+import { BigSpinner } from './ui/BigSpinner';
 
 export const WebpayPayment = () => {
 
@@ -48,12 +49,13 @@ export const WebpayPayment = () => {
 
                 const response = await axios.post('/api/payment/webpay', { sanitizedAmount, currentUserId, shippingInfo, arrayIdsQty });
                 const { webpayResponse, buyOrder } = response.data;
-                alert(response)
-                console.log(response.data);
+                console.log("Webpaypayment-webpay response", response.data);
                 const { token, url } = webpayResponse;
                 
-                await axios.post('/api/cart/active', { buyOrder, currentUserId });
-                
+                const activeCart = await axios.post('/api/cart/active', { buyOrder, currentUserId });
+                console.log("Webpaypayment-activeCart: ", activeCart)
+
+                alert("logsdata")
                 setWebpay({ token, url });
 
             } catch (error) {
@@ -85,8 +87,11 @@ export const WebpayPayment = () => {
 
 
     return (
-        <form id="webpayUrlAndTokenForm" method="post" action={webpay.url}>
-            <input type="hidden" name="token_ws" defaultValue={webpay.token} />
-        </form>
+        <div className='h-screen'>
+            <BigSpinner />
+            <form id="webpayUrlAndTokenForm" method="post" action={webpay.url}>
+                <input type="hidden" name="token_ws" defaultValue={webpay.token} />
+            </form>
+        </div>
     )
 }
