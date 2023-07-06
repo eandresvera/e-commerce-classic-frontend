@@ -145,7 +145,7 @@ export const Navbar = () => {
             </div>
     
             <div
-                className={`navbar absolute overflow-hidden w-screen p-10 h-screen space-y-4 bg-black text-2xl ${mobileMenu ? 'fadein' : ' fadeout'}`}
+                className={`navbar w-screen p-10 h-screen space-y-4 bg-black text-2xl ${mobileMenu && 'fadein'}`}
             id="mobile-menu"
             >
                 <div className="px-2 pt-2 pb-3 space-y-4">
