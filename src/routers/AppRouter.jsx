@@ -52,6 +52,11 @@ export const AppRouter = ({location}) => {
         })
     }, [dispatch])    
 
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [])
+    
+
     return (
         <Router>
             <div className='mb-16'>

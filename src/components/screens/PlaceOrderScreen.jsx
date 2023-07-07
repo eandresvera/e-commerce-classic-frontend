@@ -68,7 +68,12 @@ export const PlaceOrderScreen = (props) => {
     }else{
 
         return (
-            <div className="min-h-screen space-y-8">
+            <div className="min-h-screen space-y-8 w-9/12 flex flex-col m-auto">
+                <div>
+                    <h2 className=" py-6 text-3xl m-auto text-center">                                                                      
+                        Subtotal ({ cartItems.reduce( ( a, x ) => a + x.qty, 0 ) }): ${ cartItems.reduce( ( a, x ) => a + ( x.price * x.qty ) , 0 ) }
+                    </h2>
+                </div>
                 <div class="overflow-x-auto w-full">
                     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -124,17 +129,17 @@ export const PlaceOrderScreen = (props) => {
                     </table>
                 </div>
 
-                <div className="flex flex-col">
-                    Tipo de despacho
-                    <span>
+                <div className="flex flex-col items-center">
+                    <span className='text-2xl'>Tipo de despacho</span>
+                    <span class="text-primary-darkest">
                         {
                             shippingInfo.delivery 
                                 ? 'Delivery' 
                                 : 'Retiro en tienda'
                         }
                     </span>
-                    Metodo de pago 
-                    <span>
+                    <span className='text-2xl'>Método de pago</span>
+                    <span class="text-primary-darkest">
                         {
                             shippingInfo.webpay ? 'WEBPAY' : 
                             shippingInfo.transfer ? 'transfer' : 
@@ -145,8 +150,8 @@ export const PlaceOrderScreen = (props) => {
     
                 {
                     shippingInfo.webpay 
-                        ? <button onClick={ webpayHandler }>Pagar</button> 
-                        : <button onClick={ transferHandler }>Pagar</button> 
+                        ? <div className='w-3/4 m-auto'><button className='btn-turquoise mt-2' onClick={ webpayHandler }>Pagar</button> </div>
+                        : <div className='w-3/4 m-auto'><button className='btn-turquoise mt-2' onClick={ transferHandler }>Pagar</button></div> 
                 }
     
                        

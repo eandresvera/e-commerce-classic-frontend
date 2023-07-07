@@ -2,11 +2,46 @@ import React from 'react'
 
 export const HamburgerButton = ({ setMobileMenu, mobileMenu }) => {
   return (
-    <button 
-        onClick={ () => setMobileMenu(!mobileMenu) } 
-        className="flex items-center px-3 py-2 border rounded text-teal-200 border-teal-400 hover:text-white hover:border-white"
-    >
-        <svg className="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
-    </button>
+    <div className="absolute inset-y-0 left-0 flex items-center md:hidden">
+      <button
+          type="button"
+          className="inline-flex items-center justify-center p-2  hover:text-primary-main focus:outline-none"
+          aria-controls="mobile-menu"
+          aria-expanded="false"
+          onClick={() => setMobileMenu(!mobileMenu)}
+      >
+          <span className="sr-only">Abrir menú</span>
+          <svg
+          className={`${mobileMenu ? 'hidden' : 'block'} h-6 w-6`}
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          aria-hidden="true"
+          >
+          <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M4 6h16M4 12h16M4 18h16"
+          />
+          </svg>
+          <svg
+          className={`${mobileMenu ? 'block' : 'hidden'} h-6 w-6`}
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          aria-hidden="true"
+          >
+          <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M6 18L18 6M6 6l12 12"
+          />
+          </svg>
+      </button>
+  </div>
   )
 }
