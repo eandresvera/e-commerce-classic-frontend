@@ -1,7 +1,6 @@
 import axios from 'axios';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
 import { addToCart } from '../../redux/ducks/cart';
 import { ProductCard } from '../cart/ProductCard';
 import { SubTotal } from '../cart/SubTotal';
@@ -34,7 +33,7 @@ export const CartScreen = ( props ) => {
     }
 
     return (
-        <div className="flex-container" style={{ backgroundColor: 'rgb(234,237,237)' }}>
+        <div className="flex-container min-h-[30vh]" style={{ backgroundColor: 'rgb(234,237,237)' }}>
 
             <div  className="flex flex-1 sm:px-5 pt-5">
                 <div className="flex flex-col w-full px-5 py-5 bg-white">

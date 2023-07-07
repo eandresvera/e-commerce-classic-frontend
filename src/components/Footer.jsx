@@ -5,15 +5,15 @@ import { IoHeart } from 'react-icons/io5';
 
 export const Footer = () => {
     return (
-        <div className="bg-black text-xs h-60v sm:h-50v flex flex-wrap content-center">
-            <div className="grid grid-cols-4 border-b border-white text-white p-8 space-x-20 centrar h-3/4">
+        <div className="bg-black text-xs h-full flex flex-wrap content-center">
+            <div className="grid md:grid-cols-4 border-b border-white text-white p-8 space-y-6 md:space-y-0 md:space-x-20 centrar h-3/4">
 
-                <div className="flex flex-col space-y-6 h-full">
+                <div className="flex flex-col items-center space-y-6 h-full">
                     <img className=" h-50" src="../assets/logo-white.png" alt=""/>
                     <span>Lorem ipsum dolor sit amet, consectetur <br/> adipiscing elit, sed do eiusmod tempor incididunt cilisis.</span>
                 </div>
 
-                <div className="flex flex-col place-items-center h-full">
+                <div className="flex flex-col h-full">
                     <span className="pb-4 text-primary-main">Quick Links</span>
                     <Link to="/" className="hover:text-primary-main">About</Link>
                     <Link to="/" className="hover:text-primary-main">Blogs</Link>
@@ -21,7 +21,7 @@ export const Footer = () => {
                     <Link to="/" className="hover:text-primary-main">FAQ</Link>
                 </div>
 
-                <div className="flex flex-col place-items-center  h-full">
+                <div className="flex flex-col  h-full">
                     <span className="pb-4 text-primary-main">Security</span>
                     <Link to="/" className="hover:text-primary-main">My Account</Link>
                     <Link to="/" className="hover:text-primary-main">Orders tracking</Link>
