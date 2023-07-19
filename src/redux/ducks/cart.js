@@ -1,5 +1,5 @@
 import axios from 'axios';
-const serverEndpoint = 'https://e-commerce-classic-backend-q3ia.vercel.app'; 
+const serverEndpoint = process.env.REACT_APP_SERVER_ENDPOINT; 
 
 //Consts
 //Initial state: empty array if cart is empty, otherwise the localstorage items

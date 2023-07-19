@@ -1,5 +1,5 @@
 import axios from "axios";
-const serverEndpoint = 'https://e-commerce-classic-backend-q3ia.vercel.app';
+const serverEndpoint = process.env.REACT_APP_SERVER_ENDPOINT;
 
 //Types
 const PRODUCT_DETAILS_REQUEST = 'PRODUCT_DETAILS_REQUEST';
