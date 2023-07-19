@@ -49,13 +49,11 @@ export const WebpayPayment = () => {
                     
                 const response = await axios.post('/api/payment/webpay', { sanitizedAmount, currentUserId, shippingInfo, arrayIdsQty });
                 const { webpayResponse, buyOrder } = response.data;
-                console.log("Webpaypayment-webpay response", response.data);
+
                 const { token, url } = webpayResponse;
                 
                 const activeCart = await axios.post('/api/cart/active', { buyOrder, currentUserId });
-                console.log("Webpaypayment-activeCart: ", activeCart)
 
-                alert("logsdata")
                 setWebpay({ token, url });
 
             } catch (error) {
