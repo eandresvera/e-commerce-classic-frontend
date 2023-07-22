@@ -55,8 +55,14 @@ export const WebpayPayment = () => {
                 await axios.post(`${process.env.REACT_APP_SERVER_ENDPOINT}/api/cart/active`, { buyOrder, currentUserId });
 
                 setWebpay({ token, url });
-            } catch (error) {
-                console.log(error);
+            } catch (error) {        
+                if (error.response) {
+                    console.log(error.response);
+                } else if (error.request) {
+                    console.log("network error");
+                } else {
+                    console.log(error);
+                }
             }
         }
  
