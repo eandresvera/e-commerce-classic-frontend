@@ -67,20 +67,25 @@ export const WebpayPayment = () => {
             }
         }
  
-        // Sanitized
-        // Send an api request for each product in cart
-        // SanitizedAmount = sum of each api request  
-        cartItems.map( (e,i) => 
-            getTotal( e.id, e.qty )
-                .then(e => {
-                    sanitizedAmount+=e;
-    
-                    // If index belong to last element in array, do...
-                    if ((cartItems.length === i+1) && (sanitizedAmount !== null)) {
-                        webpayHandler();
-                    }
-                })
-        )
+        // Create an array of promises for each API request
+        const allPromises = cartItems.map((e) => getTotal(e.id, e.qty));
+
+        // Wait for all API requests to finish and then call webpayHandler()
+        Promise.all(allPromises)
+        .then((results) => {
+            // results will be an array containing the results of each API request
+            // Update sanitizedAmount and arrayIdsQty accordingly
+            results.forEach((result, index) => {
+                sanitizedAmount += result;
+                arrayIdsQty.push({ id: cartItems[index].id, qty: result / cartItems[index].price });
+            });
+
+            // Now call webpayHandler()
+            webpayHandler();
+        })
+        .catch((error) => {
+            console.log(error.message);
+        });
 
     }, [])
 
