@@ -1,6 +1,5 @@
 import axios from "axios";
-import { data } from '../../data';
-const serverEndpoint = process.env.REACT_APP_SERVER_ENDPOINT; 
+const endpoint = process.env.REACT_APP_SERVER_ENDPOINT; 
 
 //Types
 const PRODUCT_LIST_REQUEST = 'PRODUCT_LIST_REQUEST';
@@ -32,7 +31,7 @@ export const productListAction = ( category=false ) => async( dispatch ) => {
     dispatch({ type: PRODUCT_LIST_REQUEST });
     // let filteredByCategory = [];
     try {
-        const { data } = await axios.get(`${serverEndpoint}/api/products`);
+        const { data } = await axios.get(`${endpoint}/api/products`);
         let filteredByCategory = data.filter(product => product.category.includes(category))
 
         // console.log(filteredByCategory, category);

@@ -1,5 +1,5 @@
 import axios from "axios";
-const serverEndpoint = process.env.REACT_APP_SERVER_ENDPOINT;
+const endpoint = process.env.REACT_APP_SERVER_ENDPOINT;
 
 //Types
 const PRODUCT_DETAILS_REQUEST = 'PRODUCT_DETAILS_REQUEST';
@@ -31,7 +31,7 @@ export const productDetailsAction = ( productId ) => async( dispatch ) => {
     dispatch({ type: PRODUCT_DETAILS_REQUEST });
 
     try {
-        const { data } = await axios.get(`${serverEndpoint}/api/products/${productId}`);
+        const { data } = await axios.get(`${endpoint}/api/products/${productId}`);
 
         dispatch({ type: PRODUCT_DETAILS_SUCCESS, payload: data });
 

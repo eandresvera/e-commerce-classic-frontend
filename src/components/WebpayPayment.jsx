@@ -3,10 +3,10 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { getCurrentUSerId } from '../helpers/authHelper';
 import { BigSpinner } from './ui/BigSpinner';
-const serverEndpoint = process.env.REACT_APP_SERVER_ENDPOINT; 
 
 export const WebpayPayment = () => {
-
+    
+    const endpoint = process.env.REACT_APP_SERVER_ENDPOINT; 
     const [webpay, setWebpay] = useState({ });
     const cart = useSelector(state => state.cart)
     const { shippingInfo, cartItems } = cart;
@@ -23,7 +23,7 @@ export const WebpayPayment = () => {
             const qtyAbsolute = Math.abs(qty);
             
             try {
-                const {data} = await axios.get(`${serverEndpoint}/api/products/${id}`); 
+                const {data} = await axios.get(`${endpoint}/api/products/${id}`); 
                 
                 if ( qtyAbsolute <= data.stock ) {
                     
@@ -48,12 +48,12 @@ export const WebpayPayment = () => {
             try {
                 const currentUserId = getCurrentUSerId();
                     
-                const response = await axios.post(`${serverEndpoint}/api/payment/webpay`, { sanitizedAmount, currentUserId, shippingInfo, arrayIdsQty });
+                const response = await axios.post(`${endpoint}/api/payment/webpay`, { sanitizedAmount, currentUserId, shippingInfo, arrayIdsQty });
                 const { webpayResponse, buyOrder } = response.data;
 
                 const { token, url } = webpayResponse;
 
-                await axios.post(`${serverEndpoint}/api/cart/active`, { buyOrder, currentUserId });
+                await axios.post(`${endpoint}/api/cart/active`, { buyOrder, currentUserId });
 
                 setWebpay({ token, url });
             } catch (error) {        

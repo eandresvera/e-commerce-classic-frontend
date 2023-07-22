@@ -1,5 +1,5 @@
 import axios from 'axios';
-const serverEndpoint = process.env.REACT_APP_SERVER_ENDPOINT; 
+const endpoint = process.env.REACT_APP_SERVER_ENDPOINT; 
 
 //Consts
 //Initial state: empty array if cart is empty, otherwise the localstorage items
@@ -73,7 +73,7 @@ export default function reducer( state = initialState, action ){
 //Actions
 export const addToCart = ( productId, qty ) => async( dispatch, getState ) => {
  
-    const { data } = await axios.get(`${serverEndpoint}/api/products/${productId}`);
+    const { data } = await axios.get(`${endpoint}/api/products/${productId}`);
 
     dispatch({
         type: CART_ADD_ITEM,
