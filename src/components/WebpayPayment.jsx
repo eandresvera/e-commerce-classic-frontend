@@ -76,7 +76,7 @@ export const WebpayPayment = () => {
                     sanitizedAmount+=e;
     
                     // If index belong to last element in array, do...
-                    if (cartItems.length === i+1) {
+                    if ((cartItems.length === i+1) && (sanitizedAmount !== null)) {
                         webpayHandler();
                     }
                 })
