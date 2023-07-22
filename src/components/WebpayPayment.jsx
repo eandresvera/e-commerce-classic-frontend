@@ -47,12 +47,12 @@ export const WebpayPayment = () => {
             try {
                 const currentUserId = getCurrentUSerId();
                     
-                const response = await axios.post('/api/payment/webpay', { sanitizedAmount, currentUserId, shippingInfo, arrayIdsQty });
+                const response = await axios.post(`${process.env.REACT_APP_SERVER_ENDPOINT}/api/payment/webpay`, { sanitizedAmount, currentUserId, shippingInfo, arrayIdsQty });
                 const { webpayResponse, buyOrder } = response.data;
 
                 const { token, url } = webpayResponse;
 
-                const activeCart = await axios.post('/api/cart/active', { buyOrder, currentUserId });
+                await axios.post(`${process.env.REACT_APP_SERVER_ENDPOINT}/api/cart/active`, { buyOrder, currentUserId });
 
                 setWebpay({ token, url });
             } catch (error) {
