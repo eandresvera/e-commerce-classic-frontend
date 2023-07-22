@@ -5,7 +5,8 @@ import { getCurrentUSerId } from '../helpers/authHelper';
 import { BigSpinner } from './ui/BigSpinner';
 
 export const WebpayPayment = () => {
-
+    
+    const endpoint = process.env.REACT_APP_SERVER_ENDPOINT; 
     const [webpay, setWebpay] = useState({ });
     const cart = useSelector(state => state.cart)
     const { shippingInfo, cartItems } = cart;
@@ -22,7 +23,7 @@ export const WebpayPayment = () => {
             const qtyAbsolute = Math.abs(qty);
             
             try {
-                const {data} = await axios.get(`/api/products/${id}`); 
+                const {data} = await axios.get(`${endpoint}/api/products/${id}`); 
                 
                 if ( qtyAbsolute <= data.stock ) {
                     
@@ -47,33 +48,44 @@ export const WebpayPayment = () => {
             try {
                 const currentUserId = getCurrentUSerId();
                     
-                const response = await axios.post('/api/payment/webpay', { sanitizedAmount, currentUserId, shippingInfo, arrayIdsQty });
+                const response = await axios.post(`${endpoint}/api/payment/webpay`, { sanitizedAmount, currentUserId, shippingInfo, arrayIdsQty });
                 const { webpayResponse, buyOrder } = response.data;
 
                 const { token, url } = webpayResponse;
 
-                const activeCart = await axios.post('/api/cart/active', { buyOrder, currentUserId });
+                await axios.post(`${endpoint}/api/cart/active`, { buyOrder, currentUserId });
 
                 setWebpay({ token, url });
-            } catch (error) {
-                console.log(error);
+            } catch (error) {        
+                if (error.response) {
+                    console.log(error.response);
+                } else if (error.request) {
+                    console.log("network error");
+                } else {
+                    console.log(error);
+                }
             }
         }
  
-        // Sanitized
-        // Send an api request for each product in cart
-        // SanitizedAmount = sum of each api request  
-        cartItems.map( (e,i) => 
-            getTotal( e.id, e.qty )
-                .then(e => {
-                    sanitizedAmount+=e;
-    
-                    // If index belong to last element in array, do...
-                    if (cartItems.length === i+1) {
-                        webpayHandler();
-                    }
-                })
-        )
+        // Create an array of promises for each API request
+        const allPromises = cartItems.map((e) => getTotal(e.id, e.qty));
+
+        // Wait for all API requests to finish and then call webpayHandler()
+        Promise.all(allPromises)
+        .then((results) => {
+            // results will be an array containing the results of each API request
+            // Update sanitizedAmount and arrayIdsQty accordingly
+            results.forEach((result, index) => {
+                sanitizedAmount += result;
+                arrayIdsQty.push({ id: cartItems[index].id, qty: result / cartItems[index].price });
+            });
+
+            // Now call webpayHandler()
+            webpayHandler();
+        })
+        .catch((error) => {
+            console.log(error.message);
+        });
 
     }, [])
 
@@ -85,7 +97,7 @@ export const WebpayPayment = () => {
 
     return (
         <div className='h-screen'>
-            <BigSpinner />
+            <BigSpinner text={"Redireccionando a Transbank..."}/>
             <form id="webpayUrlAndTokenForm" method="post" action={webpay.url}>
                 <input type="hidden" name="token_ws" defaultValue={webpay.token} />
             </form>

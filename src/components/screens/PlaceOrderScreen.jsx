@@ -9,7 +9,7 @@ import { Navigate, useNavigate } from 'react-router-dom';
 export const PlaceOrderScreen = (props) => {
     
     const dispatch = useDispatch();
-    
+    const endpoint = process.env.REACT_APP_SERVER_ENDPOINT; 
     const cart = useSelector(state => state.cart); 
     const { shippingInfo, cartItems } = cart;
     let sanitizedAmount = 0; 
@@ -19,7 +19,7 @@ export const PlaceOrderScreen = (props) => {
     const getTotal = async( id, qty ) => {
 
         try {
-            const {data} = await axios.get(`/api/products/${id}`); 
+            const {data} = await axios.get(`${endpoint}/api/products/${id}`); 
             const total = data.price*qty;
             return total;
         } catch (error) {
