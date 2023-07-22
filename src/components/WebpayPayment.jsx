@@ -44,19 +44,10 @@ export const WebpayPayment = () => {
     
         const webpayHandler = async() => {
 
-            const options = {
-                method: 'post',
-                url: `${process.env.REACT_APP_SERVER_ENDPOINT}/api/payment/webpay`,
-                data: { sanitizedAmount, currentUserId, shippingInfo, arrayIdsQty },
-                headers: {
-                    'Content-Type': 'text/plain;charset=utf-8',
-                },
-            }
-
             try {
                 const currentUserId = getCurrentUSerId();
                     
-                const response = await axios({options});
+                const response = await axios.post(`${process.env.REACT_APP_SERVER_ENDPOINT}/api/payment/webpay`, { sanitizedAmount, currentUserId, shippingInfo, arrayIdsQty });
                 const { webpayResponse, buyOrder } = response.data;
 
                 const { token, url } = webpayResponse;
