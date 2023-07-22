@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { getCurrentUSerId } from '../helpers/authHelper';
 import { BigSpinner } from './ui/BigSpinner';
+const serverEndpoint = process.env.REACT_APP_SERVER_ENDPOINT; 
 
 export const WebpayPayment = () => {
 
@@ -22,7 +23,7 @@ export const WebpayPayment = () => {
             const qtyAbsolute = Math.abs(qty);
             
             try {
-                const {data} = await axios.get(`/api/products/${id}`); 
+                const {data} = await axios.get(`${serverEndpoint}/api/products/${id}`); 
                 
                 if ( qtyAbsolute <= data.stock ) {
                     
@@ -47,12 +48,12 @@ export const WebpayPayment = () => {
             try {
                 const currentUserId = getCurrentUSerId();
                     
-                const response = await axios.post(`${process.env.REACT_APP_SERVER_ENDPOINT}/api/payment/webpay`, { sanitizedAmount, currentUserId, shippingInfo, arrayIdsQty });
+                const response = await axios.post(`${serverEndpoint}/api/payment/webpay`, { sanitizedAmount, currentUserId, shippingInfo, arrayIdsQty });
                 const { webpayResponse, buyOrder } = response.data;
 
                 const { token, url } = webpayResponse;
 
-                await axios.post(`${process.env.REACT_APP_SERVER_ENDPOINT}/api/cart/active`, { buyOrder, currentUserId });
+                await axios.post(`${serverEndpoint}/api/cart/active`, { buyOrder, currentUserId });
 
                 setWebpay({ token, url });
             } catch (error) {        
@@ -66,23 +67,22 @@ export const WebpayPayment = () => {
             }
         }
  
-        // Create an array of promises for each product in the cart
-        const promises = cartItems.map((e) => getTotal(e.id, e.qty));
+        // Sanitized
+        // Send an api request for each product in cart
+        // SanitizedAmount = sum of each api request  
+        cartItems.map( (e,i) => 
+            getTotal( e.id, e.qty )
+                .then(e => {
+                    sanitizedAmount+=e;
+    
+                    // If index belong to last element in array, do...
+                    if (cartItems.length === i+1) {
+                        webpayHandler();
+                    }
+                })
+        )
 
-        // Wait for all promises to resolve before proceeding
-        Promise.all(promises)
-        .then((results) => {
-            // Calculate the sanitizedAmount
-            results.forEach((e) => (sanitizedAmount += e));
-
-            // Now, call the webpayHandler function
-            webpayHandler();
-        })
-        .catch((error) => {
-            console.log(error); // Handle the error appropriately
-        });
-
-        }, [])
+    }, [])
 
     useEffect(() => {
 
