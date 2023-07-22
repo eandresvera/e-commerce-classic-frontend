@@ -1,5 +1,4 @@
 import axios from "axios";
-import { data } from '../../data';
 const endpoint = process.env.REACT_APP_SERVER_ENDPOINT;  
 
 //Types
