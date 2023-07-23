@@ -11,8 +11,9 @@ export const GoogleSignInButton = ({props}) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const handleGoogleSignIn = async() => {
-
+    const handleGoogleSignIn = async(e) => {
+        e.preventDefault();
+        
         try {
             const { user: userIsLogged } = await googleSignIn();
 
@@ -39,9 +40,13 @@ export const GoogleSignInButton = ({props}) => {
         }
     }
 
-    return (
-        <button className="btn-turquoise mt-2" type="submit" onClick={ handleGoogleSignIn }>
-            Sign in with google
+    return (  
+        <button
+            className="px-4 w-full flex justify-center py-2 border gap-2 border-slate-200 rounded-sm text-slate-700 hover:border-slate-400 hover:text-slate-900 hover:shadow transition duration-150"
+            onClick={ handleGoogleSignIn }
+        >
+            <img class="w-6 h-6" src="https://www.svgrepo.com/show/475656/google-color.svg" loading="lazy" alt="google logo" />
+            <span>Iniciar sesión con Google</span>
         </button>
     )
 }

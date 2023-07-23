@@ -54,13 +54,13 @@ export const SigninScreen = ( props ) => {
     }
 
     return (
-        <div className="min-h-screen">
+        <div className="min-h-screen pt-5">
             <h5 className="text-3xl text-center">
                 { !createAccountBtn ? 'Inicia sesión' : 'Crea una cuenta' }
             </h5>
 
             <div className={`centrar flex justify-center mt-20 ${createAccountBtn && 'hidden'}`}>
-                <form className=" w-9/12 lg:w-5/12" onSubmit={ handleSubmit( signInHandler ) } >
+                <form className=" w-9/12 space-y-4 lg:w-5/12" onSubmit={ handleSubmit( signInHandler ) } >
 
                     { error && <span className='text-red-500 w-3/12'>{error}</span> }
                     
@@ -78,9 +78,10 @@ export const SigninScreen = ( props ) => {
                         errors={errors}
                     />
 
-                    <button className="btn-turquoise" type="submit">Iniciar sesión</button>
-                    <GoogleSignInButton props={props}/>
-
+                    <div className='space-y-4'>
+                        <button className="btn-turquoise border rounded-sm" type="submit">Iniciar sesión</button>
+                        <GoogleSignInButton props={props}/>
+                    </div>
 
                 </form>
             </div>
@@ -90,7 +91,7 @@ export const SigninScreen = ( props ) => {
             </div>
 
             <div className={`centrar flex justify-center mt-20 ${!createAccountBtn && 'hidden'}`}>
-                <form className="w-3/12" onSubmit={ handleSubmit2( signUpHandler ) } >
+                <form className="w-9/12" onSubmit={ handleSubmit2( signUpHandler ) } >
                 { error && <span className='text-red-500 w-3/12'>{error}</span> }
                     <InputUnderline 
                         inputName='email' 
