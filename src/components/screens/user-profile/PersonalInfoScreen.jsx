@@ -1,7 +1,7 @@
 import React from 'react'
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
-import { updatePassword, updateUserInfo } from '../../../helpers/dbHelper';
+import { updatePass, updateUserInfo } from '../../../helpers/dbHelper';
 import { BigSpinner } from '../../ui/BigSpinner';
 import { InputUnderline } from '../../ui/form-ui/InputUnderline';
 
@@ -41,7 +41,7 @@ export const PersonalInfoScreen = () => {
     const onSubmitPass = (data) => {
         
         data.newPass===data.setNewPass  
-            ? updatePassword( data.currentPass, data.newPass )
+            ? updatePass( data.newPass )
             : alert('Las contraseñas no coinciden')
     }
     
@@ -91,6 +91,7 @@ export const PersonalInfoScreen = () => {
                         noasterix={true}
                     /> 
                     <InputUnderline 
+                        disabled
                         register={register} 
                         inputName='email' 
                         errors={errors} 

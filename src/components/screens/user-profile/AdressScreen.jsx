@@ -23,20 +23,20 @@ export const AdressScreen = () => {
         <>
             <AddAddressModal showModal={showModal} setShowModal={setShowModal} />
 
-            <div className="min-h-screen centrar">
+            <div className="min-h-screen centrar px-5">
 
                 <div className="text-3xl py-6">
                     Mis direcciones
                 </div>
 
-                <div className="grid grid-cols-4 gap-6">
+                <div className="grid  md:grid-cols-4 gap-6">
                     
                     <button 
                         className="border-dashed flex flex-col items-center pt-14 border-4 h-52 border-gray-300"
                         onClick={ openModal }
                     >
                         <TiPlus className="h-12 w-12 text-gray-400"/>
-                        Agregar dirección
+                        Agregar o reemplazar dirección
                     </button>
 
                     { !user.address && <div>Sin direcciones</div> }

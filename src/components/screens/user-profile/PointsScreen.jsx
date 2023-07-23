@@ -13,8 +13,8 @@ export const PointsScreen = () => {
 
 
     return (
-        <div className="min-h-screen">
-            puntos
+        <div className="min-h-screen uppercase flex justify-center items-center text-4xl">
+            Pronto
         </div>
     )
 }

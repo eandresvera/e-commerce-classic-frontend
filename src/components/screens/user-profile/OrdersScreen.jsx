@@ -13,8 +13,8 @@ export const OrdersScreen = () => {
 
 
     return (
-        <div className="min-h-screen">
-            ordenes
+        <div className="min-h-screen uppercase flex justify-center items-center text-4xl">
+            Pronto
         </div>
     )
 }

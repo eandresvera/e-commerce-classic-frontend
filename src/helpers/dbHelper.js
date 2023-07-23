@@ -1,4 +1,4 @@
-import { db, auth, ToGetCredential, doc, setDoc, getDoc } from '../firebase';
+import { db, auth, doc, setDoc, getDoc, updateDoc, updatePassword } from '../firebase';
 import { toast } from 'react-toastify';
 
 export const createUser = async( userInfo ) => {
@@ -20,49 +20,34 @@ export const getUserInfo = async() => {
       }
 }
 
-export const updatePassword = ( currentPassword, newPassword ) => {
+export const updatePass = ( newPassword ) => {
 
     const notifySuccess = () => toast.success("Contraseña actualizada");
     const notifyError = () => toast.warning("Error al actualizar la contraseña");
 
     let user = auth.currentUser;
-    let credential = ToGetCredential.EmailAuthProvider.credential(
-        user.email, 
-        currentPassword
-    );
-    
-    // console.log('dbHelper:', credential);
 
-    user.reauthenticateWithCredential(credential)
-        .then(() => {
-            
-            return user.updatePassword( newPassword )
-                .then(() => {
-                    notifySuccess();
-                }).catch((error) => {
-                        console.log(error);
-                        notifyError();
-                });
-        })
-        .catch(function(error) {
-            console.log(error);
-            notifyError();
-        });
-
-    
+    updatePassword(user, newPassword).then(() => {
+        notifySuccess();
+    }).catch((error) => {
+        console.log(error);
+        notifyError();
+    });
 }
 
-export const updateUserInfo = ( dataToUpdate ) => {
+export const updateUserInfo = async( dataToUpdate ) => {
 
     const uid = auth.currentUser.uid;
-    console.log('current user id: ', dataToUpdate);
+    // console.log('current user id: ', dataToUpdate);
 
-    const userRef = db.collection('users').doc(uid);
+
+    const userRef = doc(db, 'users', uid);
+    // const userRef = db.collection('users').doc(uid);
     const notifySuccess = () => toast.success("Información actualizada");
     const notifyError = () => toast.warning("Error al actualizar la información");
 
     if ( Object.entries(dataToUpdate).length > 0 ) {
-        return userRef.update(dataToUpdate)
+        await updateDoc(userRef,dataToUpdate)
             .then(() => {
                 console.log('exito');
                 notifySuccess();

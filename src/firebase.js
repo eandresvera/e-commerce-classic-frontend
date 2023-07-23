@@ -1,7 +1,7 @@
 import firebase from 'firebase/compat/app';
 import { initializeApp } from 'firebase/app';
-import { getAuth, GoogleAuthProvider, signInWithEmailAndPassword, createUserWithEmailAndPassword, signInWithPopup, setPersistence, browserSessionPersistence, onAuthStateChanged } from 'firebase/auth';
-import { getFirestore, collection, doc, setDoc, getDoc } from 'firebase/firestore';
+import { getAuth, GoogleAuthProvider, signInWithEmailAndPassword, createUserWithEmailAndPassword, signInWithPopup, setPersistence, browserSessionPersistence, onAuthStateChanged, updatePassword } from 'firebase/auth';
+import { getFirestore, collection, doc, setDoc, getDoc, updateDoc } from 'firebase/firestore';
 
 const firebaseConfig = {
       apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -16,7 +16,6 @@ const firebaseConfig = {
     const auth = getAuth(app);
     const db = getFirestore(app);
     const googleAuthProvider = new GoogleAuthProvider();
-    const ToGetCredential = firebase.auth;
 
-    export { ToGetCredential, auth, db, googleAuthProvider, signInWithPopup, signInWithEmailAndPassword, createUserWithEmailAndPassword, collection, doc, setDoc, getDoc, setPersistence, browserSessionPersistence, onAuthStateChanged };
+    export { auth, db, googleAuthProvider, signInWithPopup, signInWithEmailAndPassword, createUserWithEmailAndPassword, collection, doc, setDoc, getDoc, updateDoc, updatePassword, setPersistence, browserSessionPersistence, onAuthStateChanged };
     export default app;
