@@ -74,54 +74,54 @@ export const PlaceOrderScreen = (props) => {
                         Subtotal ({ cartItems.reduce( ( a, x ) => a + x.qty, 0 ) }): ${ cartItems.reduce( ( a, x ) => a + ( x.price * x.qty ) , 0 ) }
                     </h2>
                 </div>
-                <div class="overflow-x-auto w-full">
-                    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                <div className="overflow-x-auto w-full">
+                    <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                        <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                             <tr>
-                                <th scope="col" class="px-6 py-3">
+                                <th scope="col" className="px-6 py-3">
                                     Nombre
                                 </th>
-                                <th scope="col" class="px-6 py-3">
+                                <th scope="col" className="px-6 py-3">
                                     Apellido
                                 </th>
-                                <th scope="col" class="px-6 py-3">
+                                <th scope="col" className="px-6 py-3">
                                     Email
                                 </th>
-                                <th scope="col" class="px-6 py-3">
+                                <th scope="col" className="px-6 py-3">
                                     Teléfono
                                 </th>
-                                <th scope="col" class="px-6 py-3">
+                                <th scope="col" className="px-6 py-3">
                                     Dirección
                                 </th>
-                                <th scope="col" class="px-6 py-3">
+                                <th scope="col" className="px-6 py-3">
                                     Ciudad
                                 </th>
-                                <th scope="col" class="px-6 py-3">
+                                <th scope="col" className="px-6 py-3">
                                     Rut
                                 </th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                     {shippingInfo.name}
                                 </th>
-                                <td class="px-6 py-4">
+                                <td className="px-6 py-4">
                                     {shippingInfo.lastname}
                                 </td>
-                                <td class="px-6 py-4">
+                                <td className="px-6 py-4">
                                     {shippingInfo.email}
                                 </td>
-                                <td class="px-6 py-4">
+                                <td className="px-6 py-4">
                                     {shippingInfo.phone}
                                 </td>
-                                <td class="px-6 py-4">
+                                <td className="px-6 py-4">
                                     {shippingInfo.address}
                                 </td>
-                                <td class="px-6 py-4">
+                                <td className="px-6 py-4">
                                     {shippingInfo.city}
                                 </td>
-                                <td class="px-6 py-4">
+                                <td className="px-6 py-4">
                                     {shippingInfo.rut}
                                 </td>
                             </tr>
@@ -131,7 +131,7 @@ export const PlaceOrderScreen = (props) => {
 
                 <div className="flex flex-col items-center">
                     <span className='text-2xl'>Tipo de despacho</span>
-                    <span class="text-primary-darkest">
+                    <span className="text-primary-darkest">
                         {
                             shippingInfo.delivery 
                                 ? 'Delivery' 
@@ -139,7 +139,7 @@ export const PlaceOrderScreen = (props) => {
                         }
                     </span>
                     <span className='text-2xl'>Método de pago</span>
-                    <span class="text-primary-darkest">
+                    <span className="text-primary-darkest">
                         {
                             shippingInfo.webpay ? 'WEBPAY' : 
                             shippingInfo.transfer ? 'transfer' : 

@@ -16,6 +16,7 @@ export const GoogleSignInButton = ({props}) => {
 
         try {
             const { user: userIsLogged } = await googleSignIn();
+            console.log('asdasd');
 
             if ( userIsLogged ) {
                 const userExist = await getUserInfo();
@@ -44,9 +45,8 @@ export const GoogleSignInButton = ({props}) => {
         <button
             className="px-4 w-full flex justify-center py-2 border gap-2 border-slate-200 rounded-sm text-slate-700 hover:border-slate-400 hover:text-slate-900 hover:shadow transition duration-150"
             onClick={ handleGoogleSignIn }
-            tar
         >
-            <img class="w-6 h-6" src="https://www.svgrepo.com/show/475656/google-color.svg" loading="lazy" alt="google logo" />
+            <img className="w-6 h-6" src="https://www.svgrepo.com/show/475656/google-color.svg" loading="lazy" alt="google logo" />
             <span>Iniciar sesión con Google</span>
         </button>
     )
