@@ -33,7 +33,7 @@ const mainCarousel = {
         }
       ],
     design: {
-        divClasses: 'h-30v lg:h-70v',
+        divClasses: 'h-20v lg:h-70v',
     },
     photos: [
         {
