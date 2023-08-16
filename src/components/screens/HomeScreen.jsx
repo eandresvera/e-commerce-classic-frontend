@@ -78,7 +78,7 @@ const topProductsCarousel = {
       ],
     design: {
         imgHeight:"h-28 sm:h-48",
-        tittle:"Productos destacados en Zapatos hombre (CAROUSEL)",
+        tittle:"Los zapatos más vendidos",
         margin: 'mt-5',
     },
     photos: [
