@@ -12,6 +12,7 @@ import { addProduct, getProducts } from '../../helpers/dbHelper';
 
 import { ToastContainer } from 'react-toastify';
 import { MarqueeText } from '../carousels/MarqueeText';
+import { Qr } from '../cards/Qr';
 
 
 const mainCarousel = {
@@ -33,7 +34,7 @@ const mainCarousel = {
         }
       ],
     design: {
-        divClasses: 'h-20v lg:h-70v',
+        divClasses: 'h-20v md:h-50v lg:h-70v',
     },
     photos: [
         {
@@ -119,7 +120,64 @@ const topProductsCarousel = {
         },
     ],
 }
-
+const bottomProductsCarousel = {
+    slidesToShow:6,
+    slidesToScroll: 6, 
+    infinite: false, 
+    speed:800,
+    className: 'slides',
+    responsive: [
+        {
+          breakpoint: 640,
+          settings: {
+            slidesToShow: 4,
+            slidesToScroll: 4
+          }
+        }
+      ],
+    design: {
+        imgHeight:"h-28 sm:h-48",
+        tittle:"No te lo puedes perder",
+        margin: 'mt-5',
+    },
+    photos: [
+        {
+            name: 'photo 1',
+            url: '../assets/dev/shoes-man/1.jpg',
+            responsive_url: '../assets/dev/shoes-man/1.jpg',
+        },
+        {
+            name: 'photo 2',
+            url: '../assets/dev/shoes-man/2.jpg',
+            responsive_url: '../assets/dev/shoes-man/2.jpg',
+        },
+        {
+            name: 'photo 3',
+            url: '../assets/dev/shoes-man/3.jpg',
+            responsive_url: '../assets/dev/shoes-man/3.jpg',
+        },
+        {
+            name: 'photo 4',
+            url: '../assets/dev/shoes-man/4.jpg',
+            responsive_url: '../assets/dev/shoes-man/4.jpg',
+        },
+        {
+            name: 'photo 5',
+            url: '../assets/dev/shoes-man/5.jpg',
+            responsive_url: '../assets/dev/shoes-man/5.jpg',
+        },
+        {
+            name: 'photo 6',
+            url: '../assets/dev/shoes-man/6.jpg',
+            responsive_url: '../assets/dev/shoes-man/6.jpg',
+        },
+        {
+            name: 'photo 7',
+            url: '../assets/dev/shoes-man/7.jpg',
+            responsive_url: '../assets/dev/shoes-man/7.jpg',
+        },
+    ],
+}
 // console.log(addProduct());
 export const HomeScreen = () => {
 
@@ -180,8 +238,10 @@ export const HomeScreen = () => {
                     <Parallaxx />
                 </div>
 
+                <Qr />
+
                 <div className="bg-white mt-5">
-                    <Carousel settings={ topProductsCarousel }/>
+                    <Carousel settings={ bottomProductsCarousel }/>
                 </div>
 
                 {/* Banner product2 */}
