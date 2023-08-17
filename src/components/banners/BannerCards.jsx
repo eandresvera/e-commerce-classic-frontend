@@ -10,7 +10,7 @@ export const BannerCards = () => {
     }, [])
 
     return (
-        <div className="mt-5 hidden md:flex flex-wrap space-x-5" data-aos="fade-up" data-aos-duration="1000">
+        <div className="mt-5 flex flex-col md:flex-row flex-wrap mx-2 md:mx-0 md:space-x-5" data-aos="fade-up" data-aos-duration="1000">
 
             <SimpleCard tittle='Compra por categorias' url='../assets/banner-cards/3.jpg'/>
             <SimpleCard tittle='Viste a la moda' url='../assets/banner-cards/1.jpg'/>
