@@ -38,29 +38,29 @@ export const Navbar = () => {
                     <HamburgerButton setMobileMenu={setMobileMenu} mobileMenu={mobileMenu}/>
 
                     <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
-                    {/* Logo */}
-                    {/* <div className="flex-shrink-0 flex items-center">
-                        <span className="text-white text-lg font-semibold">Logo</span>
-                    </div> */}
+                        {/* Logo */}
+                        {/* <div className="flex-shrink-0 flex items-center">
+                            <span className="text-white text-lg font-semibold">Logo</span>
+                        </div> */}
 
                         {/* DESKTOP LINKS */}
-                    <div className="hidden md:block sm:ml-6">
-                        <div className="flex space-x-4">
-                        {/* Enlaces de la barra de navegación */}
-                                    {
-                                links.map( link => (
-                                    <div className="flex content-start" key={link.name}>
-                                        <NavLink 
-                                            to={link.path}
-                                            className={({ isActive }) => "hover:text-primary-light" + (isActive ? " text-primary-light" : "")}
-                                        >
-                                        {link.name}
-                                    </NavLink>
-                                    </div>
-                                ))
-                            }
+                        <div className="hidden md:block sm:ml-6">
+                            <div className="flex space-x-4">
+                            {/* Navbar links */}
+                                {
+                                    links.map( link => (
+                                        <div className="flex content-start uppercase" key={link.name}>
+                                            <NavLink 
+                                                to={link.path}
+                                                className={({ isActive }) => "hover:text-primary-light" + (isActive ? " text-primary-light" : "")}
+                                            >
+                                            {link.name}
+                                        </NavLink>
+                                        </div>
+                                    ))
+                                }
+                            </div>
                         </div>
-                    </div>
                     </div>
 
                     <div className='flex items-center space-x-2 '>

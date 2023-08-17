@@ -186,8 +186,7 @@ export const HomeScreen = () => {
     const dispatch = useDispatch();
     const productList = useSelector((state) => state.productList)
     const { loading, products, error  } = productList;
-
-    // console.log('Home: ', products);
+    
     useEffect( () => {
 
         dispatch( productListAction() );

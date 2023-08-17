@@ -7,8 +7,7 @@ export const Parallaxx = () => {
             let img = element;
             let imgParent = img.parentNode;
             let speed = parseFloat(img.getAttribute('data-speed'));
-    
-            console.log("IMG: ", img);
+
             function parallaxImg() {
             let imgY = imgParent.offsetTop;
             let winBottom = window.pageYOffset + window.innerHeight;
@@ -31,9 +30,9 @@ export const Parallaxx = () => {
     
     // bgImage={ '../assets/slider/4.jpg'}
     return (
-        <div className=" w-screen relative overflow-hidden h-[200px] md:h-[550px] text-white">
+        <div className=" relative overflow-hidden h-[200px] md:h-[550px] text-white">
             <img 
-                className='img-parallax absolute top-0 left-1/2 transform -translate-x-1/2 w-screen h-[150%] md:h-[full]' 
+                className='img-parallax absolute right-0 top-0 left-1/2 transform -translate-x-1/2 w-screen h-[150%] md:h-[full]' 
                 src="../assets/slider/4.jpg" 
                 alt="" 
                 data-speed="1.2"/>

@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { FaShoppingCart } from 'react-icons/fa';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import { addToCart } from '../../redux/ducks/cart';
 
 export const BannerProducts = ({ id, url, price, name, mobile_url }) => {
@@ -23,10 +24,14 @@ export const BannerProducts = ({ id, url, price, name, mobile_url }) => {
         notify();
     }
     
+    useEffect(() => {
+        AOS.init();
+    }, [])
+
     // console.log('ID: ', id)
 
     return (
-        <div className="flex flex-wrap shadow-md bg-white flex-col items-center">
+        <div className="flex flex-wrap shadow-md bg-white flex-col items-center" data-aos="fade-up" data-aos-duration="2000">
 
             <div className="">                
 
