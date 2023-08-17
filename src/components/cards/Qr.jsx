@@ -3,7 +3,7 @@ import React from 'react'
 export const Qr = () => {
   return (    
     <div class="body-font min-h-screen bg-gray-100 md:pt-10 text-gray-600">
-       <div class="container mx-auto mt-10 flex max-w-3xl flex-wrap justify-center rounded-lg bg-white px-5 py-24">
+       <div class="container mx-auto mt-5 flex max-w-3xl flex-wrap justify-center rounded-lg bg-white px-5 py-24">
           <div class="flex-wrap md:flex">
              <div class="mx-auto space-y-10">
                 <img class="mx-auto mt-12 h-52 w-52 rounded-lg border p-2 md:mt-0" src="https://i.imgur.com/FQS7fFC.png" alt="step" />
