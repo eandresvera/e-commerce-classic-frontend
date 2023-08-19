@@ -15,6 +15,13 @@
         opacity: 0;
         transition: all .5s ease;
     }
+    .filter_drawer{
+        position:absolute;
+        transform: translate(-100%);
+        visibility: hidden;
+        opacity: 0;
+        transition: all .2s ease;
+    }
     .fadein{
         transform: translateX(0);
         visibility: visible;
@@ -54,6 +61,7 @@
         display: flex;
         position: relative;
         white-space: nowrap;
+        align-items: center;
         animation: scroll 50s linear infinite;
     }
     .marquee-text-inner span {
@@ -66,6 +74,9 @@
     }
     .marquee-text-inner .separator {
         color: #3fe0c7;
+    }
+    .marquee-text-inner .svg {
+        fill: #3fe0c7;
     }
         @keyframes scroll {
             0% {

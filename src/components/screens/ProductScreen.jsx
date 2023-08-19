@@ -109,7 +109,7 @@ export const ProductScreen = () => {
                                         <span className="text-red-700">${product.price}</span> 
                                     </div>
                             }
-                            {
+                            {/* {
                                 product.colors && 
                                     <div className="flex">
                                         <span className="font-medium">Color:</span> 
@@ -117,7 +117,7 @@ export const ProductScreen = () => {
                                             <div key={color} className="border border-gray-800 rounded-full h-6 w-6 m-2 cursor-pointer" style={{backgroundColor: color}}></div>
                                         ))}
                                     </div>
-                            }
+                            } */}
                             {
                                 product.sizes && 
                                     <div>

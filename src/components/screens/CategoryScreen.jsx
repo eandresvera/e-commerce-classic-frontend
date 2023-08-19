@@ -14,6 +14,7 @@ export const CategoryScreen = () => {
     const dispatch = useDispatch();
     const { products } = useSelector(state => state.productList);
     const [data, setData] = useState({ currentPage: 1, productsPerPage: 8 });
+    const [filter, setFilter] = useState([''])
     const { category } = useParams();
 
     useEffect(() => {
@@ -24,7 +25,7 @@ export const CategoryScreen = () => {
         return <BigSpinner />
     }
 
-    // console.log('<CategoryScreen>: ', category);
+    console.log('<CategoryScreen> FILTERS: ', filter);
 
     const lastProductIndex = data.currentPage * data.productsPerPage;
     const firstProductIndex = lastProductIndex - data.productsPerPage;
@@ -37,7 +38,7 @@ export const CategoryScreen = () => {
 
                 <div className="flex justify-between flex-col md:flex-row space-y-4 md:space-y-0">
                     
-                    <FilterProducts />
+                    <FilterProducts filter={filter} setFilter={setFilter}/>
 
                     <div className="flex flex-col">
                         <div className="m-2 md:m-0 md:grid md:grid-cols-4 gap-4 space-y-2 md:space-y-0">

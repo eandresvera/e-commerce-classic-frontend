@@ -1,4 +1,5 @@
 import React from 'react';
+import { IconStar } from '../snippets/IconStar';
 
 export const MarqueeText = () => {
     
@@ -11,9 +12,10 @@ export const MarqueeText = () => {
         for (let i = 0; i < repeatTimes; i++) {
             const phraseIndex = i % phrase.length;
             elements.push(
-                <span key={i}>
-                <span>{phrase[phraseIndex]}</span> <span className="separator">&bull;</span>
-                </span>
+<>
+<span>{phrase[phraseIndex]}</span> <div > <IconStar /></div>
+</>
+
             );
         }
         return elements;

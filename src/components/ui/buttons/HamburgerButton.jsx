@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const HamburgerButton = ({ setMobileMenu, mobileMenu }) => {
+export const HamburgerButton = ({ setMobileMenu, mobileMenu, filter=false }) => {
   return (
     <div className="absolute inset-y-0 left-0 flex items-center md:hidden">
       <button
@@ -42,6 +42,7 @@ export const HamburgerButton = ({ setMobileMenu, mobileMenu }) => {
           />
           </svg>
       </button>
+      {filter && 'Filtrar'}
   </div>
   )
 }
