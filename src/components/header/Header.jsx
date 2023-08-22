@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { InputSearch } from '../ui/form-ui/InputSearch';
 import { BannerSN } from '../banners/BannerSN';
 import { useSelector } from 'react-redux';
@@ -6,10 +6,16 @@ import { useSelector } from 'react-redux';
 export const Header = () => {
 
     const { products } = useSelector(state => state.productList);
+    const [filteredProducts, setFilteredProducts] = useState([]);
     
-    const filteredProductsHandler = () => {
-        console.log("Headar component - Products: ", products);
+    const handleFilteredProducts = ( e ) => {
+        const searchInputValue = e.toLowerCase();
+        const filteredProducts = products.filter( product => product.name.toLowerCase().includes(searchInputValue) )
+
+        setFilteredProducts(filteredProducts)
     }
+
+    console.log(filteredProducts);
 
     return (
         <div className="bg-white">
@@ -24,8 +30,12 @@ export const Header = () => {
                     <div className="hidden md:flex">
                         <form className="form-focused relative focus-within:border-yellow-500">
 
-                            <InputSearch />
-                            <div className='w-full bg-black h-[500px] absolute z-20'></div>
+                            <InputSearch handleFilteredProducts={handleFilteredProducts}/>
+                            {
+                                (filteredProducts.length !== 0) && 
+                                <div className='w-full bg-black h-[500px] absolute z-20'>
+                                </div>
+                            }
                             
                         </form>
                     </div>
