@@ -1,8 +1,15 @@
 import React from 'react';
 import { InputSearch } from '../ui/form-ui/InputSearch';
 import { BannerSN } from '../banners/BannerSN';
+import { useSelector } from 'react-redux';
 
 export const Header = () => {
+
+    const { products } = useSelector(state => state.productList);
+    
+    const filteredProductsHandler = () => {
+        console.log("Headar component - Products: ", products);
+    }
 
     return (
         <div className="bg-white">
@@ -15,9 +22,10 @@ export const Header = () => {
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 min-h-full justify-items-center">
 
                     <div className="hidden md:flex">
-                        <form className="form-focused focus-within:border-yellow-500">
+                        <form className="form-focused relative focus-within:border-yellow-500">
 
                             <InputSearch />
+                            <div className='w-full bg-black h-[500px] absolute z-20'></div>
                             
                         </form>
                     </div>

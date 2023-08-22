@@ -25,7 +25,7 @@ export const CategoryScreen = () => {
         return <BigSpinner />
     }
 
-    console.log('<CategoryScreen> FILTERS: ', filter);
+    // console.log('<CategoryScreen> FILTERS: ', filter);
 
     const lastProductIndex = data.currentPage * data.productsPerPage;
     const firstProductIndex = lastProductIndex - data.productsPerPage;

@@ -12,10 +12,10 @@ export const MarqueeText = () => {
         for (let i = 0; i < repeatTimes; i++) {
             const phraseIndex = i % phrase.length;
             elements.push(
-<>
-<span>{phrase[phraseIndex]}</span> <div > <IconStar /></div>
-</>
-
+              <React.Fragment key={i}>
+                <span>{phrase[phraseIndex]}</span> 
+                <div><IconStar /></div>
+              </React.Fragment>
             );
         }
         return elements;
