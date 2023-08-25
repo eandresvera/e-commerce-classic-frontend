@@ -9,13 +9,16 @@ export const Header = () => {
     const [filteredProducts, setFilteredProducts] = useState([]);
     
     const handleFilteredProducts = ( e ) => {
-        const searchInputValue = e.toLowerCase();
-        const filteredProducts = products.filter( product => product.name.toLowerCase().includes(searchInputValue) )
-
-        setFilteredProducts(filteredProducts)
+        if (e !== '') {
+            const searchInputValue = e.toLowerCase();
+            const filteredProducts = products.filter( product => product.name.toLowerCase().includes(searchInputValue) )
+    
+            setFilteredProducts(filteredProducts)
+        }else{
+            setFilteredProducts([])
+        }
     }
 
-    console.log(filteredProducts);
 
     return (
         <div className="bg-white">
@@ -27,20 +30,43 @@ export const Header = () => {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 min-h-full justify-items-center">
 
-                    <div className="hidden md:flex">
+                    <div className="flex">
                         <form className="form-focused relative focus-within:border-yellow-500">
 
                             <InputSearch handleFilteredProducts={handleFilteredProducts}/>
                             {
                                 (filteredProducts.length !== 0) && 
-                                <div className='w-full bg-black h-[500px] absolute z-20'>
+                                <div className='w-full bg-black h-[500px] absolute p-2 z-20 space-y-2 text-white'>
+                                    {
+                                        filteredProducts.map( (prod, i) => (
+                                            (i <= 6) 
+                                            ?
+                                            <div className='w-full h-14 flex space-x-8' key={i}>
+                                                <div className='w-14'>
+                                                    <img src={prod.url} alt="" className='w-20 h-14'/>
+                                                </div>
+                                                <span>
+                                                    <a className=' hover:text-primary-main' href={`/product/${prod.id}`} target="_blank" rel="noopener noreferrer">
+                                                        {prod.name}
+                                                    </a>
+                                                </span>
+                                            </div>
+                                            : (i === 7) ?
+                                            <div className='w-full h-14 text-center' key={i}>
+                                                {/* <button className=' hover:text-primary-main'>
+                                                    Ver todos los productos {'->'}
+                                                </button> */}
+                                            </div> 
+                                            : null
+                                        ))
+                                    }
                                 </div>
                             }
                             
                         </form>
                     </div>
 
-                    <div className="flex m-auto justify-center">
+                    <div className="hidden md:flex m-auto justify-center">
                         <img className="w-2/5 h-2/5 md:w-2/3" src="../assets/logo.png" alt=""/>
                     </div>
 

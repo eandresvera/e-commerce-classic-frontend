@@ -136,14 +136,14 @@
 }
 
 .input-search{
-    @apply rounded-l-md p-2 border-l border-t border-b focus:outline-none focus:border-transparent border-gray-400 px-0 lg:px-12;
+    @apply rounded-l-md p-1 md:p-2 border-l border-t border-b focus:outline-none focus:border-transparent border-gray-400 px-0 lg:px-12;
 }
 .input-search:focus{
     @apply outline-none border-transparent;
 }
 
 .search-input-btn{
-    @apply px-4 rounded-r-md bg-primary-golden p-2 uppercase border-t border-b border-r border-primary-golden;
+    @apply px-6 rounded-r-md bg-primary-golden p-1 md:p-2 uppercase border-t border-b border-r border-primary-golden;
 }
 .search-input-btn:hover{
     @apply bg-yellow-500 border-yellow-500;

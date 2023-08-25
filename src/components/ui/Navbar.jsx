@@ -9,7 +9,10 @@ import { useNavigate } from "react-router-dom";
 import { MobileMenu } from './MobileMenu';
 import { HamburgerButton } from './buttons/HamburgerButton';
 import { SignOutButton } from './buttons/SignOutButton';
-import links from '../../menuData'
+import links from '../../menuData';
+import { IconUser } from '../snippets/IconUser';
+import { IconCart } from '../snippets/IconCart';
+
 
 export const Navbar = () => {
 
@@ -37,12 +40,13 @@ export const Navbar = () => {
 
                     <HamburgerButton setMobileMenu={setMobileMenu} mobileMenu={mobileMenu}/>
 
-                    <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
+                    <div className="flex sm:items-stretch sm:justify-start">
                         {/* Logo */}
-                        {/* <div className="flex-shrink-0 flex items-center">
-                            <span className="text-white text-lg font-semibold">Logo</span>
-                        </div> */}
-
+                        <a href="/" className='flex md:hidden'>
+                            <div className="flex m-auto justify-center">
+                                <img className="w-2/5 h-2/5 md:w-2/3" src="../assets/logo-white.png" alt="logo"/>
+                            </div>
+                        </a>
                         {/* DESKTOP LINKS */}
                         <div className="hidden md:block sm:ml-6">
                             <div className="flex space-x-4">
@@ -63,7 +67,7 @@ export const Navbar = () => {
                         </div>
                     </div>
 
-                    <div className='flex items-center space-x-2 '>
+                    <div className='flex items-center space-x-2 absolute right-0'>
                         <div onMouseEnter={ onMouseHandler } onMouseLeave={ onMouseHandler }>
 
                             {
@@ -72,7 +76,7 @@ export const Navbar = () => {
                                     ? <SmallLoader/>
                                     : user 
                                     ? <NavLink to="/profile" className="flex flex-col text-xs normal-case" >Hola <p className='text-primary-main'>{user.name}</p> </NavLink>
-                                    : <NavLink to="/signin" className="flex flex-col text-xs" >Inicia sesión</NavLink>
+                                    : <NavLink to="/signin" className="flex flex-col text-xs" > <IconUser/> </NavLink>
                             }
 
 
@@ -89,15 +93,16 @@ export const Navbar = () => {
 
                         </div>
 
-                        <Link to="/cart" className="flex" aria-label="Carrito">
-                            <RiShoppingCart2Line size="2em" className="text-primary-main" aria-hidden="true"/>
-                            <span className="vertical-align text-lg">
-                                {
-                                    cartItems.length>0 
-                                        ? cartItems.reduce( ( a, x ) => a+x.qty, 0 )
-                                        : 0
-                                }
-                            </span>
+                        <Link to="/cart" className="flex relative pr-3" aria-label="Carrito">
+                            <IconCart />
+                            {
+                                cartItems.length>0 &&
+                                <div className="absolute right-0 -top-2 text-xs  text-black bg-primary-main p-[3px] pr-2 pl-2 rounded-full" >
+                                    {
+                                        cartItems.reduce( ( a, x ) => a+x.qty, 0 )
+                                    }
+                                </div>
+                            }
                         </Link>
                     </div>
                 </div>
