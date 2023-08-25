@@ -75,7 +75,7 @@ export const Navbar = () => {
                                 user === undefined
                                     ? <SmallLoader/>
                                     : user 
-                                    ? <NavLink to="/profile" className="flex flex-col text-xs normal-case" >Hola <p className='text-primary-main'>{user.name}</p> </NavLink>
+                                    ? (<><NavLink to="/profile" className="hidden md:flex flex-col text-xs normal-case" >Hola <p className='text-primary-main'>{user.name}</p> </NavLink><NavLink to="/profile" className="flex md:hidden flex-col text-xs normal-case" > <IconUser active /> </NavLink></>)
                                     : <NavLink to="/signin" className="flex flex-col text-xs" > <IconUser/> </NavLink>
                             }
 

@@ -129,7 +129,6 @@ export const SigninScreen = ( props ) => {
                         Crear cuenta
                     </button>
 
-
                 </form>
             </div>
             
