@@ -5,9 +5,9 @@ import { RiSecurePaymentFill } from 'react-icons/ri';
 export const BannerIcons = () => {
     return (
         <div className="bg-white min-h-full">
-            <div className="py-10 text-xs lg:text-base space-y-8 flex flex-col md:flex-row flex-wrap h-full content-center justify-center container mx-auto">
+            <div className="py-20 text-xs lg:text-base flex flex-col md:flex-row flex-wrap h-full content-center justify-center container mx-auto">
 
-                <div className="flexflex-col md:flex-row justify-center flex-1 space-x-4">
+                <div className="flex flex-col justify-center flex-1 space-x-4 mb-10 md:mb-0">
                     <div className="flex flex-wrap content-center justify-center">
                         <FaTruckMoving className="text-primary-main h-2/3 sm:h-full" size="80"/>
                     </div>
@@ -16,7 +16,7 @@ export const BannerIcons = () => {
                         <span className=''>Compras sobre $30.000</span>
                     </div>
                 </div>
-                <div className="flex flex-col md:flex-row justify-center flex-1 space-x-4">
+                <div className="flex flex-col justify-center flex-1 space-x-4 mb-10 md:mb-0">
                     <div className="flex flex-wrap content-center justify-center">
                         <FaMoneyBill className="text-primary-main h-2/3 sm:h-full" size="80"/>
                     </div>
@@ -25,7 +25,7 @@ export const BannerIcons = () => {
                         <span className=''>Problemas en producto</span>
                     </div>
                 </div>
-                <div className="flex flex-col md:flex-row justify-center flex-1 space-x-4">
+                <div className="flex flex-col justify-center flex-1 space-x-4 mb-10 md:mb-0">
                     <div className="flex flex-wrap content-center justify-center">
                         <FaStar className="text-primary-main h-2/3 sm:h-full" size="80"/>
                     </div>
@@ -34,7 +34,7 @@ export const BannerIcons = () => {
                         <span className=''>Soporte personalizado</span>
                     </div>
                 </div>
-                <div className="flex flex-col md:flex-row justify-center flex-1 space-x-4">
+                <div className="flex flex-col justify-center flex-1 space-x-4 mb-10 md:mb-0">
                     <div className="flex flex-wrap content-center justify-center">
                         <RiSecurePaymentFill className="text-primary-main h-2/3 sm:h-full" size="80"/>
                     </div>
