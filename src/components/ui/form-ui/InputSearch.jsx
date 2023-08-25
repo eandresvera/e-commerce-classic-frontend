@@ -22,5 +22,5 @@ export const InputSearch = ({ handleFilteredProducts }) => {
              O
             </button>
         </>
-    );
+    )
 }
