@@ -40,16 +40,16 @@ export const Header = () => {
                                         filteredProducts.map( (prod, i) => (
                                             (i <= 6) 
                                             ?
-                                            <div className='w-full h-14 flex space-x-8' key={i}>
-                                                <div className='w-14'>
-                                                    <img src={prod.url} alt="" className='w-20 h-14'/>
-                                                </div>
-                                                <span>
-                                                    <a className=' hover:text-primary-main' href={`/product/${prod.id}`} target="_blank" rel="noopener noreferrer">
-                                                        {prod.name}
-                                                    </a>
-                                                </span>
-                                            </div>
+                                                <a className='w-full appearance-none h-14 flex space-x-8 hover:text-primary-main' key={i} href={`/product/${prod.id}`} target="_blank" rel="noopener noreferrer">
+                                                    <div className='w-14'>
+                                                        <img src={prod.url} alt="" className='w-20 h-14'/>
+                                                    </div>
+                                                    <span>
+                                                        {/* <a className=' hover:text-primary-main' href={`/product/${prod.id}`} target="_blank" rel="noopener noreferrer"> */}
+                                                            {prod.name}
+                                                        {/* </a> */}
+                                                    </span>
+                                                </a>
                                             : (i === 7) ?
                                             <div className='w-full h-14 text-center' key={i}>
                                                 {/* <button className=' hover:text-primary-main'>

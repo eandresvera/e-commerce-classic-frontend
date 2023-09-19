@@ -62,12 +62,12 @@ export const ProductScreen = () => {
             <ToastContainer />
 
             <div className="min-h-screen pt-14 mb-36 text-sm pr-5 md:pr-0">
-                <div className="flex flex-col text-xs lg:text-lg md:flex-row centrar space-x-6  max-h-screen">
+                <div className="flex flex-col text-xs lg:text-lg md:flex-row centrar space-x-6  ">
 
                     {/* Mobile */}
                     <div className="md:hidden flex flex-col">
-                        <div className="flex justify-center sm:text-lg font-semibold tracking-wider mb-5">
-                            {product.title}
+                        <div className="flex justify-center sm:text-lg font-semibold tracking-wider mb-2">
+                            {product.name}
                         </div>
                         
                         <div className="flex justify-center mb-5">
@@ -80,9 +80,9 @@ export const ProductScreen = () => {
                         <img className="max-h-70v lg:max-h-550 lg:max-w-550" src={product.url} alt=""/>
                     </div>
                     
-                    <div className="flex flex-col flex-1 space-y-4 min-h-screen">
+                    <div className="flex flex-col flex-1 space-y-4 ">
 
-                        <div className="text-md  md:flex font-semibold tracking-wider">
+                        <div className="text-md hidden  md:flex font-semibold tracking-wider">
                             {product.name}
                         </div>
 
@@ -101,7 +101,7 @@ export const ProductScreen = () => {
                         <hr className="border-gray-300 hidden md:flex"/>
 
                         {/* Especifications */}
-                        <div className="font-light">
+                        <div className="font-light space-y-2">
                             {
                                 product.price &&
                                     <div>
@@ -139,7 +139,7 @@ export const ProductScreen = () => {
 
                     </div>
 
-                    <div className="options-right-card ">
+                    <div className="options-right-card mt-4">
 
                         <div className="text-red-700">
                             ${product.price}
