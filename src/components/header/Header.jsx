@@ -21,8 +21,6 @@ export const Header = () => {
         }
     }
 
-console.log(searchInputFocus);
-
     return (
         <div className="bg-white">
 
@@ -35,9 +33,9 @@ console.log(searchInputFocus);
                     <div className="flex">
                         <form className="form-focused relative focus-within:border-yellow-500">
 
-                            <InputSearch handleFilteredProducts={handleFilteredProducts}/>
+                            <InputSearch handleFilteredProducts={handleFilteredProducts} setSearchInputFocus={setSearchInputFocus}/>
                             {
-                                (filteredProducts.length !== 0) && 
+                                ((filteredProducts.length !== 0) && searchInputFocus) && 
                                     <FilteredProductsModal filteredProducts={filteredProducts} />
                             }
                             

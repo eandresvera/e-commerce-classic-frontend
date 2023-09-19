@@ -1,11 +1,14 @@
 import React from 'react';
 import { IconSearch } from '../../snippets/IconSearch';
 
-export const InputSearch = ({ handleFilteredProducts }) => {
+export const InputSearch = ({ handleFilteredProducts, setSearchInputFocus }) => {
     
     const handleInputChange = (e) => {
         const value = e.target.value;
         handleFilteredProducts(value);
+    }
+
+    const handleFocus = () => {
     }
 
     return (
@@ -15,6 +18,8 @@ export const InputSearch = ({ handleFilteredProducts }) => {
                 type="search" 
                 className="input-search"
                 onChange={handleInputChange}
+                onBlur={() => setSearchInputFocus(false)}
+                onFocus={() => setSearchInputFocus(true)}
             />
             <button 
                 className="search-input-btn"
