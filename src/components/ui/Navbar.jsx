@@ -48,7 +48,7 @@ export const Navbar = () => {
                             </div>
                         </a>
                         {/* DESKTOP LINKS */}
-                        <div className="hidden md:block sm:ml-6">
+                        <div className="hidden md:block sm:ml-6 text-sm">
                             <div className="flex space-x-4">
                             {/* Navbar links */}
                                 {

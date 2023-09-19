@@ -9,7 +9,7 @@ export const InputSearch = ({ handleFilteredProducts }) => {
     }
 
     return (
-        <>
+        <div className='flex'>
             <input 
                 id="search"
                 type="search" 
@@ -21,6 +21,6 @@ export const InputSearch = ({ handleFilteredProducts }) => {
             >
              O
             </button>
-        </>
+        </div>
     )
 }

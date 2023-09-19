@@ -143,7 +143,7 @@
 }
 
 .search-input-btn{
-    @apply px-4 md:px-6 rounded-r-md bg-primary-golden p-1 md:p-2 uppercase border-t border-b border-r border-primary-golden;
+    @apply px-4 rounded-r-md bg-primary-golden py-1 md:py-2 uppercase border-t border-b border-r border-primary-golden;
 }
 .search-input-btn:hover{
     @apply bg-yellow-500 border-yellow-500;

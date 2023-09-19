@@ -245,7 +245,7 @@ export const HomeScreen = () => {
 
                 {/* Banner product2 */}
                 { products && 
-                    <div className="main-banner-products sm:ml-2 sm:mr-2">
+                    <div className="main-banner-products">
                         { products.filter( product => product.category.includes('men/shirt')).slice(0,4).map( men => (
                             <BannerProducts 
                                 id= { men.id }

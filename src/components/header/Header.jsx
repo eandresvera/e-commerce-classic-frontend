@@ -29,7 +29,6 @@ export const Header = () => {
             <div className="h-20 md:h-40 min-h-full">
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 min-h-full justify-items-center">
-
                     <div className="flex">
                         <form className="form-focused relative focus-within:border-yellow-500">
 

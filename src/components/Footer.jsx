@@ -37,8 +37,8 @@ export const Footer = () => {
 
             <div className=" text-gray-300 text-md font-thin py-5 w-full flex justify-center">
                 © 2021 Pure Beauty &nbsp;|&nbsp; Desarrollado con &nbsp; 
-                <IoHeart className="text-white font-bold"/> &nbsp; por &nbsp; 
-                <span className="text-white">eapp.cl</span>
+                <IoHeart className="text-white font-bold"/> &nbsp; por &nbsp;
+                <a className="text-white" target='_blank' rel="noreferrer" href="www.eandresvera.cl">eandresvera.cl</a>
             </div>
 
         </div>
