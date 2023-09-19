@@ -8,9 +8,6 @@ export const InputSearch = ({ handleFilteredProducts, setSearchInputFocus }) => 
         handleFilteredProducts(value);
     }
 
-    const handleFocus = () => {
-    }
-
     return (
         <div className='flex'>
             <input 
